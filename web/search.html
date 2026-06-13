@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base=""><input type="search" placeholder="Search docs…" aria-label="Search"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a><a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a><a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a><a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a><a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a><a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a><a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a><a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a><a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a><a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a><a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a><a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main"><div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> Search</div>
+<h1>Search</h1>
+<p class="lead">Search the tiled-blupi documentation.</p>
+<div id="search-results-container">
+  <p id="search-placeholder">Type in the search box above to find pages. Results will appear here.</p>
+  <div id="search-results"></div>
+</div>
+
+<h2>Browse by Section</h2>
+<p>If search does not find what you need, try browsing:</p>
+<ul>
+  <li><a href="getting-started.html">Getting Started</a> — installation and first steps</li>
+  <li><a href="blp-format.html">BLP Format</a> — complete binary format specification</li>
+  <li><a href="layers.html">Layers</a> — the four Tiled layers</li>
+  <li><a href="map-properties.html">Map Properties</a> — level header fields</li>
+  <li><a href="object-types.html">Object Types</a> — all 45 game object types</li>
+  <li><a href="object-properties.html">Object Properties</a> — per-object BLP fields</li>
+  <li><a href="tilesets.html">Tilesets</a> — all tilesets and their tile counts</li>
+  <li><a href="tutorials/index.html">Tutorials</a> — step-by-step editing guides</li>
+  <li><a href="reference/index.html">Reference</a> — quick-lookup tables</li>
+  <li><a href="extension/index.html">Extension (sblv.js)</a> — technical implementation</li>
+  <li><a href="troubleshooting.html">Troubleshooting</a> — solutions to common problems</li>
+  <li><a href="faq.html">FAQ</a> — frequently asked questions</li>
+</ul>
+
+<div class="page-nav"><a href="license.html">← License</a>
+  </div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div></div>
+<script src="assets/script.js"></script>
+</body></html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using Tiled with tiled-blupi — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="">
+    <input type="search" placeholder="Search docs…" aria-label="Search">
+  </form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a>
+  <a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a>
+  <a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a>
+  <a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a>
+  <a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a>
+  <a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a>
+  <a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a>
+  <a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a>
+  <a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a>
+  <a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a>
+  <a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a>
+  <a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main">
+<div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> Using Tiled</div>
+<h1>Using Tiled with tiled-blupi</h1>
+<p class="lead">
+  A practical guide to the Tiled map editor features that are most useful when editing
+  Speedy Blupi levels — panels, tools, properties, and workflow.
+</p>
+
+<h2>The Tiled Interface</h2>
+<p>
+  <a href="https://www.mapeditor.org/">Tiled</a> is a general-purpose map editor designed for
+  tile-based 2D games. When you open a Speedy Blupi level, it creates a map with four layers
+  and several custom map properties. The key interface areas are:
+</p>
+<ul>
+  <li><strong>Canvas</strong> (centre) — the level grid where you see and edit tiles and objects.</li>
+  <li><strong>Layers panel</strong> (right side or floating) — lists all layers; click a layer to make it active.</li>
+  <li><strong>Tilesets panel</strong> (bottom right or tab) — shows available tilesets; click a tile to select it for painting.</li>
+  <li><strong>Properties panel</strong> (left or floating) — shows properties for the selected object or, when nothing is selected, the map properties.</li>
+  <li><strong>Project panel</strong> (left) — shows project folders (<code>tilesets/</code> and <code>DATA/</code>).</li>
+  <li><strong>Console</strong> — accessible via View → Views and Toolbars → Console; shows extension output and errors.</li>
+</ul>
+
+<h2>Opening a Level</h2>
+<ol>
+  <li>Make sure you have <a href="installation.html">installed tiled-blupi</a> and opened the <code>.tiled-project</code> file.</li>
+  <li>Go to <strong>File → Open</strong> (Ctrl+O).</li>
+  <li>Navigate to the game's <code>DATA/</code> folder.</li>
+  <li>Select a <code>WORLD###.BLP</code> or <code>u###-###.blp</code> file.</li>
+  <li>When asked for the format, choose the correct one for your game.</li>
+</ol>
+
+<div class="callout warning">
+  <div class="callout-title">Which files can you open?</div>
+  Only open files named <code>WORLD###.BLP</code> (standard levels) or <code>u###-###.blp</code> (custom levels).
+  The DATA folder contains other <code>.blp</code> files that are <strong>not</strong> level files.
+  Opening them will produce errors.
+</div>
+
+<h2>Editing Tiles</h2>
+<h3>Selecting a Layer</h3>
+<p>You must select the correct layer before editing. Click the layer name in the Layers panel:</p>
+<ul>
+  <li><strong>Foreground</strong> — to edit the main gameplay tiles</li>
+  <li><strong>Decoration</strong> — to edit background decoration tiles</li>
+</ul>
+<p>You cannot edit the Background image layer (it is locked).</p>
+
+<h3>Selecting a Tile</h3>
+<p>Open the <strong>Tilesets</strong> panel. Each layer uses a different tileset:</p>
+<ul>
+  <li>Foreground → <code>object</code> tileset</li>
+  <li>Decoration → <code>explo</code> tileset</li>
+</ul>
+<p>Click a tile in the Tilesets panel to select it, or click-drag to select a multi-tile stamp.</p>
+
+<h3>Painting Tools</h3>
+<table>
+  <thead><tr><th>Tool</th><th>Shortcut</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>Stamp Brush</td><td>B</td><td>Paint selected tile(s) onto the canvas by clicking or dragging</td></tr>
+    <tr><td>Eraser</td><td>E</td><td>Remove tiles (sets cells to empty — <code>0xFFFF</code> in BLP)</td></tr>
+    <tr><td>Bucket Fill</td><td>F</td><td>Flood-fill a contiguous region with the selected tile</td></tr>
+    <tr><td>Selection Rectangle</td><td>R</td><td>Select a rectangular area (then copy/paste or fill)</td></tr>
+  </tbody>
+</table>
+
+<h2>Editing Objects</h2>
+<h3>Selecting and Moving Objects</h3>
+<ol>
+  <li>Select the <strong>Objects</strong> layer.</li>
+  <li>Choose the <strong>Select Objects</strong> tool (S).</li>
+  <li>Click on an object to select it. Its properties appear in the Properties panel.</li>
+  <li>Drag the object to move it to a new position. The position is quantised to 64-pixel (1-tile) grid steps in the BLP output.</li>
+</ol>
+
+<h3>Adding a New Object</h3>
+<ol>
+  <li>Select the <strong>Objects</strong> layer.</li>
+  <li>In the Tilesets panel, switch to the <strong>Object Types</strong> tileset.</li>
+  <li>Choose the <strong>Insert Tile Object</strong> tool.</li>
+  <li>Click on the canvas to place the object.</li>
+  <li>In the Properties panel, set the <code>type</code> property to the desired ObjectTypes enum value.</li>
+  <li>Set any other properties (<code>endpoint</code>, motion timing fields, etc.) as needed.</li>
+</ol>
+
+<h3>Deleting an Object</h3>
+<p>Select the object and press <strong>Delete</strong>. The object slot is written as zeros (type=0) in the BLP file on the next save.</p>
+
+<h2>Editing Map Properties</h2>
+<p>Map properties (music, background, name, scroll flags) are edited in the Properties panel:</p>
+<ol>
+  <li>Click on an empty part of the canvas (deselect all objects).</li>
+  <li>The Properties panel shows the map's custom properties.</li>
+  <li>Click a property value to edit it.</li>
+</ol>
+<p>See <a href="map-properties.html">Map Properties</a> for descriptions of each field.</p>
+
+<h2>Saving a Level</h2>
+<ol>
+  <li><strong>File → Save</strong> (Ctrl+S) — overwrites the original <code>.blp</code> file.</li>
+  <li><strong>File → Save As</strong> — saves to a new path; Tiled will ask for the format again.</li>
+</ol>
+<div class="callout danger">
+  <div class="callout-title">No undo for saved files</div>
+  Saving is permanent. Always keep a backup of the original level files before editing.
+</div>
+
+<h2>Useful Tiled Settings</h2>
+<ul>
+  <li><strong>View → Snapping → Snap to Grid</strong> — recommended; ensures objects align to 64-pixel tiles.</li>
+  <li><strong>View → Show Grid</strong> — shows the tile grid on the canvas.</li>
+  <li><strong>View → Zoom In/Out</strong> — use Ctrl+scroll to zoom. Levels are 100×100 tiles; zooming out helps with the big picture.</li>
+  <li><strong>Map → Map Properties</strong> — alternative way to access map custom properties.</li>
+</ul>
+
+<h2>The Project Panel</h2>
+<p>When the <code>.tiled-project</code> is open, the Project panel shows two folders:</p>
+<ul>
+  <li><code>tilesets/</code> — all TSX tileset files. Double-click a tileset to open it (not usually needed for editing).</li>
+  <li><code>DATA</code> (or <code>../DATA</code>) — the game's level files. Double-click a <code>.BLP</code> file here to open it directly.</li>
+</ul>
+<p>This makes it easy to switch between levels without navigating through File → Open each time.</p>
+
+<div class="page-nav"><a href="installation.html">← Installation</a>
+  <a class="nav-next" href="project-structure.html">Project Structure →</a></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

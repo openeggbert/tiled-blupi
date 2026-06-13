@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial 1 — Install Into Game Folder — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Tutorials</a> › Tutorial 1: Install</nav>
+<h1>Tutorial 1: Install Into Game Folder</h1>
+<p>In this tutorial you will copy the tiled-blupi project folder into your Speedy Blupi game directory so that Tiled can find the level files, tilesets, and extension script all in one place. This is required before you can open any level.</p>
+
+<div class="callout callout-info">
+<strong>Time needed:</strong> 5–10 minutes. <strong>Difficulty:</strong> Easy. <strong>Requires:</strong> tiled-blupi repository (cloned or downloaded), at least one Speedy Blupi game installed.
+</div>
+
+<h2>Step 1: Find Your Speedy Blupi Game Directory</h2>
+<p>The game directory is wherever Speedy Blupi was installed. The exact path depends on your operating system and how the game was installed.</p>
+<table>
+<thead><tr><th>OS</th><th>Typical Default Path</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Windows (GOG)</td><td><code>C:\GOG Games\Speedy Blupi</code></td><td>GOG Galaxy puts games here by default</td></tr>
+<tr><td>Windows (other)</td><td><code>C:\Program Files\Speedy Blupi</code></td><td>May vary; check your installer</td></tr>
+<tr><td>Linux (native)</td><td><code>/usr/local/games/blupi</code></td><td>If installed system-wide from package</td></tr>
+<tr><td>Linux (home)</td><td><code>~/games/blupi</code> or <code>~/.local/share/blupi</code></td><td>If installed per-user</td></tr>
+<tr><td>macOS</td><td><code>/Applications/Speedy Blupi.app/Contents/Resources</code></td><td>Inside the .app bundle</td></tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<strong>How to confirm you have the right directory:</strong> Look for a file called <code>game.blp</code> (or similar) and a subfolder called <code>image/</code> or <code>sound/</code>. If you see these, you are in the correct place.
+</div>
+
+<h2>Step 2: Locate the tiled-blupi Folder to Copy</h2>
+<p>Inside the tiled-blupi repository, there are two project folders — one for each game:</p>
+<pre><code>tiled-blupi/
+├── speedy-blupi-1/          ← copy this for SB1
+│   ├── speedy-blupi-1.tiled-project
+│   ├── extensions/
+│   │   └── sblv.js
+│   ├── tilesets/
+│   └── levels/              ← placeholder; actual levels are in game dir
+└── speedy-blupi-2/          ← copy this for SB2
+    ├── speedy-blupi-2.tiled-project
+    ├── extensions/
+    │   └── sblv.js
+    └── tilesets/</code></pre>
+<p>Copy the entire <code>speedy-blupi-1/</code> folder (for SB1) or <code>speedy-blupi-2/</code> (for SB2), or copy both if you have both games.</p>
+
+<h2>Step 3: Copy the Folder Into the Game Directory</h2>
+<p>Place the copied folder directly inside your Speedy Blupi game directory. After copying, the structure should look like this (SB1 example):</p>
+<pre><code>Speedy Blupi/                 ← your game installation directory
+├── game.blp                  ← game data (pre-existing)
+├── image/                    ← game images (pre-existing)
+├── sound/                    ← game sounds (pre-existing)
+├── level/                    ← level files: blp1001.blp … blp1025.blp
+└── speedy-blupi-1/           ← you just copied this in
+    ├── speedy-blupi-1.tiled-project
+    ├── extensions/
+    │   └── sblv.js
+    └── tilesets/
+        ├── element.tsx
+        ├── explo.tsx
+        └── …</code></pre>
+<div class="callout callout-warning">
+<strong>Do not rename the folder.</strong> The <code>.tiled-project</code> file uses relative paths to find <code>extensions/</code> and <code>tilesets/</code>. Renaming the project folder will break these paths and Tiled will not load the extension or tilesets.
+</div>
+
+<h2>Step 4: Verify the Copy</h2>
+<p>After copying, verify the following files exist:</p>
+<table>
+<thead><tr><th>File</th><th>What It Means If Missing</th></tr></thead>
+<tbody>
+<tr><td><code>speedy-blupi-1/speedy-blupi-1.tiled-project</code></td><td>Tiled will have no project to open</td></tr>
+<tr><td><code>speedy-blupi-1/extensions/sblv.js</code></td><td>Tiled cannot read or write .blp files</td></tr>
+<tr><td><code>speedy-blupi-1/tilesets/element.tsx</code></td><td>Foreground layer tiles will show as missing</td></tr>
+<tr><td><code>speedy-blupi-1/tilesets/object.tsx</code></td><td>Object layer tiles will show as missing</td></tr>
+<tr><td><code>speedy-blupi-1/tilesets/player-start.tsx</code></td><td>Player start tiles will be unavailable</td></tr>
+</tbody>
+</table>
+
+<h2>Step 5: (Optional) Installing SB2 at the Same Time</h2>
+<p>If you have both games installed, you can copy both project folders. The SB2 folder goes into the SB2 game directory:</p>
+<pre><code>Speedy Blupi 2/               ← SB2 game directory
+└── speedy-blupi-2/           ← copy this one for SB2
+    ├── speedy-blupi-2.tiled-project
+    ├── extensions/
+    │   └── sblv.js
+    └── tilesets/</code></pre>
+<p>Each game's project folder is independent. Tiled allows you to have multiple projects open simultaneously, so you can work on SB1 and SB2 levels at the same time once both are installed.</p>
+
+<h2>Troubleshooting This Step</h2>
+<table>
+<thead><tr><th>Problem</th><th>Likely Cause</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>Cannot paste — permission denied</td><td>Game installed in a protected directory</td><td>Copy with administrator/sudo privileges, or reinstall the game to a user-writable location</td></tr>
+<tr><td>Files were copied but tilesets still show as missing in Tiled</td><td>Tiled project file is not in the right relative position</td><td>Make sure the <code>speedy-blupi-1/</code> folder is directly inside the game root, not inside a subfolder of it</td></tr>
+<tr><td>sblv.js extension does not load in Tiled</td><td>Tiled cannot find the <code>extensions/</code> directory</td><td>Check that <code>speedy-blupi-1.tiled-project</code> has <code>"extensionsPath": "extensions"</code> and that the JS file is at <code>extensions/sblv.js</code></td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-success">
+<strong>Done!</strong> You are ready for <a href="open-a-level.html">Tutorial 2: Open a Level</a>.
+</div>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

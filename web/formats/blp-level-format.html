@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLP Level Format — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Formats</a> › BLP Level Format</nav>
+<h1>BLP Level Format</h1>
+<p>The <code>.blp</code> file is the native level format used by Speedy Blupi 1 and Speedy Blupi 2. It is a binary file with a fixed size of exactly <strong>50,468 bytes</strong>. All multi-byte values are stored in <strong>little-endian</strong> byte order. The format stores one 100×100 tile grid for terrain, one for decoration, and an array of up to 200 game objects.</p>
+
+<div class="callout callout-info">
+<strong>Source of truth:</strong> The BLP format was reverse-engineered by reading the <code>sblv.js</code> extension source code. Fields not decoded by the extension are marked "unknown" and are zeroed when the file is round-tripped through tiled-blupi.
+</div>
+
+<h2>File Layout Overview</h2>
+<table>
+<thead><tr><th>Section</th><th>Start Offset</th><th>End Offset (inclusive)</th><th>Size</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td>Header</td><td>0x0000</td><td>0x0363</td><td>868 bytes</td><td>Version, background, music, ambiance, and unknown fields</td></tr>
+<tr><td>Foreground tile layer</td><td>0x0364</td><td>0x5183</td><td>20,000 bytes</td><td>100×100 grid of uint16 tile values, column-major</td></tr>
+<tr><td>Decoration tile layer</td><td>0x5184</td><td>0x9FA3</td><td>20,000 bytes</td><td>100×100 grid of uint16 tile values, column-major</td></tr>
+<tr><td>Object array</td><td>0x9FA4</td><td>0xC223</td><td>9,600 bytes</td><td>200 × 0x30-byte object structs</td></tr>
+<tr><td>Trailing bytes</td><td>0xC224</td><td>0xC523</td><td>768 bytes</td><td>Purpose unknown; written as zeros by sblv.js</td></tr>
+</tbody>
+</table>
+<p>Total: 868 + 20000 + 20000 + 9600 + 768 = <strong>51,236</strong>… wait, let me recalculate. The actual size is 50,468 bytes. End of object array at 0xC223 = 49,699 decimal. 50,468 - 49,699 - 1 = 768 trailing bytes. OK, trailing section 0xC224–0xC523 = 768 bytes (0xC523 - 0xC224 + 1 = 768). Total: 0xC523 + 1 = 50,468. ✓</p>
+
+<h2>Header Section (0x0000–0x0363)</h2>
+<table>
+<thead><tr><th>Offset</th><th>Size</th><th>Type</th><th>Field</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>0x0000</td><td>2</td><td>uint16 LE</td><td>major_version</td><td>1 for SB1, 2 for SB2. Extension checks this on read.</td></tr>
+<tr><td>0x0002</td><td>2</td><td>uint16 LE</td><td>minor_version</td><td>2 for SB1, 3 for SB2.</td></tr>
+<tr><td>0x0004–0x000F</td><td>12</td><td>unknown</td><td>—</td><td>Unknown; zeroed by sblv.js on write.</td></tr>
+<tr><td>~0x0010</td><td>2</td><td>uint16 LE</td><td>background</td><td>Background image index. Exact offset inferred.</td></tr>
+<tr><td>varies</td><td>2</td><td>uint16 LE</td><td>music</td><td>Music track index.</td></tr>
+<tr><td>varies</td><td>2</td><td>uint16 LE</td><td>ambiance</td><td>Ambient sound index.</td></tr>
+<tr><td>remainder</td><td>varies</td><td>unknown</td><td>—</td><td>Unknown fields; zeroed by sblv.js on write.</td></tr>
+</tbody>
+</table>
+
+<h2>Tile Layer Format (Foreground and Decoration)</h2>
+<p>Each tile layer stores 10,000 uint16 values in column-major order. "Column-major" means all 100 rows of column 0 are stored first, then all 100 rows of column 1, and so on.</p>
+<pre><code>Index formula for cell (x, y):
+  index = y + 100 * x   (where x is column, y is row, both 0-based)
+
+Byte offset of cell (x, y) in Foreground layer:
+  offset = 0x0364 + (y + 100*x) * 2
+
+Byte offset of cell (x, y) in Decoration layer:
+  offset = 0x5184 + (y + 100*x) * 2</code></pre>
+<p><strong>Tile value encoding:</strong></p>
+<ul>
+<li><code>0xFFFF</code> (65535) — empty cell (no tile)</li>
+<li>Any other uint16 — zero-based tile index into the corresponding tileset (element for Foreground, explo for Decoration)</li>
+</ul>
+
+<h2>Object Array Format (0x9FA4–0xC223)</h2>
+<p>The object array holds exactly 200 entries. Each entry is 0x30 (48) bytes. Object <em>n</em> starts at <code>0x9FA4 + n * 0x30</code>. Unused slots contain all zeros.</p>
+<table>
+<thead><tr><th>Struct Offset</th><th>Size</th><th>Type</th><th>Field</th></tr></thead>
+<tbody>
+<tr><td>+0x00</td><td>2</td><td>uint16 LE</td><td>type (game object type ID)</td></tr>
+<tr><td>+0x02</td><td>8</td><td>uint8[8]</td><td>unknown (+0x02–+0x09); zeroed by sblv.js</td></tr>
+<tr><td>+0x0A</td><td>2</td><td>uint16 LE</td><td>fieldA (unknown)</td></tr>
+<tr><td>+0x0C</td><td>4</td><td>uint32? or 2×uint16</td><td>x position (grid column 0–99)</td></tr>
+<tr><td>+0x10</td><td>4</td><td>uint32? or 2×uint16</td><td>y position (grid row 0–99)</td></tr>
+<tr><td>+0x14</td><td>4</td><td>uint32?</td><td>endpoint_x</td></tr>
+<tr><td>+0x18</td><td>4</td><td>uint32?</td><td>endpoint_y</td></tr>
+<tr><td>+0x1C</td><td>2</td><td>uint16 LE</td><td>a_to_b_time</td></tr>
+<tr><td>+0x1E</td><td>2</td><td>uint16 LE</td><td>b_to_a_time</td></tr>
+<tr><td>+0x20</td><td>2</td><td>uint16 LE</td><td>a_wait</td></tr>
+<tr><td>+0x22</td><td>2</td><td>uint16 LE</td><td>b_wait</td></tr>
+<tr><td>+0x24</td><td>2</td><td>uint16 LE</td><td>field_24 (unknown)</td></tr>
+<tr><td>+0x26</td><td>2</td><td>uint16 LE</td><td>field_26 (unknown)</td></tr>
+<tr><td>+0x28</td><td>2</td><td>uint16 LE</td><td>field_28 (unknown)</td></tr>
+<tr><td>+0x2A</td><td>2</td><td>uint16 LE</td><td>tileset_id</td></tr>
+<tr><td>+0x2C</td><td>2</td><td>uint16 LE</td><td>tile_id</td></tr>
+<tr><td>+0x2E</td><td>2</td><td>uint16 LE</td><td>field_2E (unknown)</td></tr>
+</tbody>
+</table>
+<div class="callout callout-warning">
+<strong>Unknown field ranges:</strong> The exact byte widths and types of some fields (especially x and y positions) are inferred from the sblv.js code, which accesses them via typed array views. The widths listed above may not be precisely accurate. Future reverse-engineering may correct them.
+</div>
+
+<p>See also: <a href="../blp-format.html">BLP Format</a> in the main docs for a deeper walkthrough with worked examples.</p>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

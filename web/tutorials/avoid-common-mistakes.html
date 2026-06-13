@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial 10 — Avoid Common Mistakes — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Tutorials</a> › Tutorial 10: Avoid Common Mistakes</nav>
+<h1>Tutorial 10: Avoid Common Mistakes</h1>
+<p>This tutorial is a reference list of the most common mistakes made when editing Speedy Blupi levels with tiled-blupi. Each mistake is explained, along with how to detect it and how to recover.</p>
+
+<h2>Mistake 1: Opening a .blp File Without Loading the Project First</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> Tiled opens the file as raw data, shows an error, or treats it as an unknown format. The map may appear as a 1×1 map or refuse to open.
+</div>
+<p><strong>Cause:</strong> The sblv.js extension (which teaches Tiled how to read .blp files) is only loaded when the associated <code>.tiled-project</code> file is open. Without it, Tiled does not know what a .blp file is.</p>
+<p><strong>Fix:</strong> Always open the <code>.tiled-project</code> file first using <strong>File → Open File or Project</strong>. Then open the <code>.blp</code> file. See <a href="open-a-level.html">Tutorial 2</a>.</p>
+
+<h2>Mistake 2: Painting Tiles on the Wrong Layer</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> Tiles appear visually in the right place, but do not behave correctly in-game (walls you can walk through, or decoration tiles that block movement).
+</div>
+<p><strong>Cause:</strong> Painting on the Decoration layer when you meant to paint on the Foreground layer (or vice versa). Both layers are visible simultaneously so the mistake is not visually obvious in Tiled.</p>
+<p><strong>Fix:</strong> Always check the active layer name in the Layers panel and the status bar before painting. Foreground tiles go on the <strong>Foreground</strong> layer; decorative tiles go on <strong>Decoration</strong>. Use <kbd>Ctrl+Z</kbd> to undo misplaced tiles.</p>
+
+<h2>Mistake 3: Resizing the Map</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> After saving, the file size is not 50,468 bytes. The game may crash or refuse to load the level.
+</div>
+<p><strong>Cause:</strong> Using Tiled's <strong>Map → Resize Map</strong> feature. The BLP format requires exactly 100 columns × 100 rows. Any other size produces a malformed file.</p>
+<p><strong>Fix:</strong> Never resize a BLP-backed map. If you accidentally resized, undo immediately (<kbd>Ctrl+Z</kbd>) before saving. If you already saved a resized map, restore from your backup copy.</p>
+
+<h2>Mistake 4: Exceeding 200 Objects</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> Some objects appear in Tiled but are missing in-game after saving. No error is shown.
+</div>
+<p><strong>Cause:</strong> The BLP object array holds exactly 200 entries. If you place more than 200 objects in Tiled's object layer, sblv.js writes only the first 200 and silently discards the rest.</p>
+<p><strong>Fix:</strong> Count your objects before saving. Select all objects on the Objects layer (<kbd>Ctrl+A</kbd> while the layer is active) and read the count from the status bar. Keep it at 200 or fewer — including player start objects.</p>
+
+<h2>Mistake 5: Using the Wrong Project File for the Game Version</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> Object types that exist in SB2 but not SB1 are missing from the tileset, or the tileset shows different tiles than expected.
+</div>
+<p><strong>Cause:</strong> Opening an SB2 level while the SB1 project is loaded (or vice versa). The two project files contain different <code>sblv.js</code> files and different tilesets.</p>
+<p><strong>Fix:</strong> Use <code>speedy-blupi-1.tiled-project</code> for SB1 levels (<code>blp1xxx.blp</code>) and <code>speedy-blupi-2.tiled-project</code> for SB2 levels (<code>blp2xxx.blp</code>).</p>
+
+<h2>Mistake 6: Not Making a Backup Before Editing</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> You save corrupted data and cannot recover the original level.
+</div>
+<p><strong>Cause:</strong> Tiled overwrites the <code>.blp</code> file with no backup. If the save produces corrupted data (wrong size, bad object data), the original file is gone.</p>
+<p><strong>Fix:</strong> Before editing any level for the first time, make a copy of the entire <code>level/</code> directory to a safe location. You can restore any level from the backup if something goes wrong.</p>
+
+<h2>Mistake 7: Setting Invalid Map Property Values</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> The game crashes or shows a blank background/silence when loading the edited level.
+</div>
+<p><strong>Cause:</strong> Setting <code>background</code>, <code>music</code>, or <code>ambiance</code> to a value outside the valid range (which is not fully documented).</p>
+<p><strong>Fix:</strong> Only use values that appear in other official levels. Survey the existing 25–30 level files to find the range of values in use, and stay within that range.</p>
+
+<h2>Mistake 8: Placing a Player Start on a Non-Objects Layer</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> The player start tile appears visually on the canvas but the player does not spawn at that position in-game.
+</div>
+<p><strong>Cause:</strong> The player-start tile was placed on the Foreground or Decoration tile layer instead of the Objects layer. On tile layers, objects from the player-start tileset are stored as tile IDs, not as BLP objects.</p>
+<p><strong>Fix:</strong> Player starts must be placed on the <strong>Objects</strong> layer as tile objects (Insert Tile Object tool). Delete the misplaced tiles from the tile layers and re-place them correctly.</p>
+
+<h2>Mistake 9: Forgetting to Save Before Testing</h2>
+<p><strong>Symptom:</strong> Changes made in Tiled are not visible in the game.</p>
+<p><strong>Cause:</strong> The file was not saved after editing. Tiled keeps all changes in memory until you explicitly save.</p>
+<p><strong>Fix:</strong> Always press <kbd>Ctrl+S</kbd> before switching to the game. Check that the title bar tab no longer shows an asterisk (*) next to the file name.</p>
+
+<h2>Mistake 10: Editing a Level While the Game Has It Loaded</h2>
+<div class="callout callout-warning">
+<strong>Symptom:</strong> The game shows the old version of the level, or file locking errors occur when trying to save.
+</div>
+<p><strong>Cause:</strong> Some operating systems lock files that are open by another process. If the game has loaded a level into memory and is running, the OS may prevent Tiled from writing to the same file.</p>
+<p><strong>Fix:</strong> Exit the game before saving from Tiled. On systems that do not lock files (most Linux distributions), this is less of an issue, but it is still best practice to exit the game before overwriting its data files.</p>
+
+<h2>Quick Checklist Before Every Save</h2>
+<table>
+<thead><tr><th>Check</th><th>How to Verify</th></tr></thead>
+<tbody>
+<tr><td>Correct project file is loaded</td><td>Project panel shows the right game's folder name</td></tr>
+<tr><td>Correct layer is active</td><td>Layer panel shows the layer you intend to edit</td></tr>
+<tr><td>Map is still 100×100</td><td>Map menu → Map Properties shows Width=100, Height=100</td></tr>
+<tr><td>Object count ≤ 200</td><td>Select all on Objects layer; count in status bar</td></tr>
+<tr><td>Backup exists</td><td>A copy of the original .blp file is in a safe location</td></tr>
+<tr><td>Game is closed</td><td>No Speedy Blupi window is open</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-success">
+<strong>Congratulations!</strong> You have completed all 10 tutorials. You now know how to install tiled-blupi, open and navigate levels, edit all four layer types, configure objects, and safely save your work. For deeper technical details, see the <a href="../reference/index.html">Reference</a> and <a href="../formats/index.html">Formats</a> sections.
+</div>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Differences Reference — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Reference</a> › Game Differences</nav>
+<h1>Game Differences Reference</h1>
+<p>This page is a comprehensive side-by-side comparison of the SB1 and SB2 tiled-blupi implementations. When working with both games simultaneously, use this page to understand exactly what is different between them.</p>
+
+<h2>Top-Level Differences</h2>
+<table>
+<thead><tr><th>Aspect</th><th>Speedy Blupi 1 (SB1)</th><th>Speedy Blupi 2 (SB2)</th></tr></thead>
+<tbody>
+<tr><td>Project file</td><td><code>speedy-blupi-1.tiled-project</code></td><td><code>speedy-blupi-2.tiled-project</code></td></tr>
+<tr><td>Extension file</td><td><code>extensions/sblv.js</code> (513 lines)</td><td><code>extensions/sblv.js</code> (552 lines)</td></tr>
+<tr><td>Format name (registered)</td><td><code>"sblv"</code></td><td><code>"sb2lv"</code></td></tr>
+<tr><td>BLP major_version</td><td>1</td><td>2</td></tr>
+<tr><td>BLP minor_version (default)</td><td>2</td><td>3</td></tr>
+<tr><td>Level file prefix</td><td><code>blp1</code> (e.g., <code>blp1001.blp</code>)</td><td><code>blp2</code> (e.g., <code>blp2001.blp</code>)</td></tr>
+<tr><td>Number of levels</td><td>25 (<code>blp1001</code>–<code>blp1025</code>)</td><td>30 (<code>blp2001</code>–<code>blp2030</code>)</td></tr>
+<tr><td>Regular object types</td><td>34 (itemTypesArray length 34)</td><td>44 (itemTypesArray length 44)</td></tr>
+<tr><td>Player start types</td><td>4 (type IDs 200–203)</td><td>4 (type IDs 200–203)</td></tr>
+<tr><td>Total supported object types</td><td>38</td><td>48</td></tr>
+</tbody>
+</table>
+
+<h2>Extension Code Differences</h2>
+<table>
+<thead><tr><th>Code Element</th><th>SB1 Value</th><th>SB2 Value</th></tr></thead>
+<tbody>
+<tr><td><code>MAJOR_VERSION</code> constant</td><td>1</td><td>2</td></tr>
+<tr><td><code>DEFAULT_MINOR_VERSION</code></td><td>2</td><td>3</td></tr>
+<tr><td>Format name string</td><td><code>"sblv"</code></td><td><code>"sb2lv"</code></td></tr>
+<tr><td><code>itemTypesArray</code> length</td><td>34</td><td>44</td></tr>
+<tr><td>File extension registered</td><td><code>"blp"</code></td><td><code>"blp"</code></td></tr>
+<tr><td>Total lines in sblv.js</td><td>513</td><td>552</td></tr>
+</tbody>
+</table>
+
+<h2>Tileset Differences</h2>
+<p>The tilesets are separate files in each project folder. Visually, they may contain different images (different game assets), but the structure (TSX format, tile count, tileset names) is the same in both games.</p>
+<table>
+<thead><tr><th>Tileset</th><th>SB1</th><th>SB2</th><th>Difference</th></tr></thead>
+<tbody>
+<tr><td>element</td><td>Present</td><td>Present</td><td>Different PNG images (different game art)</td></tr>
+<tr><td>explo</td><td>Present</td><td>Present</td><td>Different PNGs; same y=64 tileoffset</td></tr>
+<tr><td>object</td><td>Present</td><td>Present</td><td>Different PNGs</td></tr>
+<tr><td>object-types</td><td>34 tiles + Endpoint</td><td>44 tiles + Endpoint</td><td>SB2 has 10 more object type tiles</td></tr>
+<tr><td>player-start</td><td>4 tiles</td><td>4 tiles</td><td>Possibly different PNG art; same structure</td></tr>
+<tr><td>blupi000–blupi003</td><td>Present</td><td>Present</td><td>Different PNGs (different character art)</td></tr>
+</tbody>
+</table>
+
+<h2>Object Type ID Differences</h2>
+<p>Type IDs 0–33 are shared between SB1 and SB2 (same BLP values, same game behavior). Type IDs 34–43 exist only in SB2:</p>
+<table>
+<thead><tr><th>BLP Type ID Range</th><th>SB1</th><th>SB2</th></tr></thead>
+<tbody>
+<tr><td>0–33</td><td>Yes (34 types)</td><td>Yes (same 34 types)</td></tr>
+<tr><td>34–43</td><td>No</td><td>Yes (10 additional types)</td></tr>
+<tr><td>44–199</td><td>Not supported</td><td>Not supported</td></tr>
+<tr><td>200–203</td><td>Yes (player starts)</td><td>Yes (player starts)</td></tr>
+</tbody>
+</table>
+
+<h2>Working With Both Games</h2>
+<p>You can have both game projects loaded in Tiled simultaneously. Each project registers its own scripted map format (sblv vs sb2lv), so Tiled can distinguish them. When opening a .blp file, the extension checks the <code>major_version</code> field to confirm it matches the expected version for that project. Opening an SB2 file with the SB1 project loaded will fail the version check.</p>
+
+<p>See also: <a href="../games/differences.html">Games — Differences</a> for a gameplay-focused comparison.</p>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

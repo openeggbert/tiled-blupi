@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiled Projects — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base=""><input type="search" placeholder="Search docs…" aria-label="Search"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a><a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a><a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a><a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a><a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a><a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a><a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a><a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a><a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a><a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a><a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a><a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main"><div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> Tiled Projects</div>
+<h1>Tiled Projects</h1>
+<p class="lead">
+  The <code>.tiled-project</code> files configure the Tiled editor for each supported game.
+  This page explains every field, what it controls, and how it connects the editor to the game.
+</p>
+
+<h2>Project Files</h2>
+<ul>
+  <li><code>Speedy Blupi/tiled/speedyblupi.tiled-project</code> — for Speedy Blupi</li>
+  <li><code>Speedy Blupi II/tiled/speedyblupi2.tiled-project</code> — for Speedy Blupi II</li>
+</ul>
+<p>
+  Both files have identical structure. They are standard Tiled project JSON files.
+  The game-specific differences are in the format name registered by <code>sblv.js</code>
+  and the tile counts in the tilesets.
+</p>
+
+<h2>Opening a Project</h2>
+<p>
+  Go to <strong>File → Open</strong> in Tiled and select the <code>.tiled-project</code> file.
+  Tiled will load the project, execute the extension, and configure the editor for the game.
+</p>
+<p>
+  You can also use <strong>File → Recent Projects</strong> to quickly switch between the
+  SB1 and SB2 projects.
+</p>
+
+<h2>extensionsPath</h2>
+<pre>"extensionsPath": "extensions"</pre>
+<p>
+  Tells Tiled where to find JavaScript extension files, relative to the project file's location.
+  Resolves to <code>tiled/extensions/</code>. Tiled automatically loads all <code>.js</code>
+  files in this directory when the project opens. In tiled-blupi, this loads <code>sblv.js</code>.
+</p>
+<p>
+  <strong>What happens when it loads:</strong>
+</p>
+<ol>
+  <li><code>sblv.js</code> is executed by Tiled's JavaScript engine (Qt's QJSEngine, ES5+).</li>
+  <li>The script calls <code>tiled.registerMapFormat("sblv", sblvMapFormat)</code>.</li>
+  <li>From this point, the format "Speedy Blupi level" appears in Tiled's open/save format selector.</li>
+</ol>
+
+<h2>folders</h2>
+<pre>"folders": ["tilesets", "../DATA"]</pre>
+<p>
+  Lists directories to show in the Tiled <strong>Project</strong> panel (left sidebar).
+  Both paths are relative to the project file.
+</p>
+<ul>
+  <li>
+    <code>"tilesets"</code> → resolves to <code>tiled/tilesets/</code>. Shows the tileset files
+    in the panel for easy reference and drag-and-drop.
+  </li>
+  <li>
+    <code>"../DATA"</code> → resolves to <code>DATA/</code> (one level up from <code>tiled/</code>,
+    which is the game root). Shows the level files directly in the panel, so you can double-click
+    a <code>WORLD###.BLP</code> file to open it without navigating through File → Open.
+  </li>
+</ul>
+
+<h2>propertyTypes</h2>
+<p>
+  Defines custom property types visible in Tiled's Properties panel. The project file defines two types:
+</p>
+
+<h3>Object class</h3>
+<p>
+  A <em>class</em> type named <code>Object</code> that is applied to game objects in the Objects layer.
+  This class defines all the per-object BLP fields as Tiled properties:
+</p>
+<table>
+  <thead><tr><th>Property</th><th>Tiled Type</th><th>Maps to BLP field</th></tr></thead>
+  <tbody>
+    <tr><td><code>type</code></td><td>ObjectTypes enum</td><td>BLP type ID at +0x00</td></tr>
+    <tr><td><code>endpoint</code></td><td>point</td><td>endpoint_x at +0x14, endpoint_y at +0x18</td></tr>
+    <tr><td><code>a_to_b_time</code></td><td>int</td><td>+0x1C (uint16)</td></tr>
+    <tr><td><code>b_to_a_time</code></td><td>int</td><td>+0x1E (uint16)</td></tr>
+    <tr><td><code>a_wait</code></td><td>int</td><td>+0x20 (uint16)</td></tr>
+    <tr><td><code>b_wait</code></td><td>int</td><td>+0x22 (uint16)</td></tr>
+    <tr><td><code>field_A</code></td><td>int</td><td>+0x0A (uint16)</td></tr>
+    <tr><td><code>field_24</code></td><td>int</td><td>+0x24 (int32)</td></tr>
+    <tr><td><code>field_26</code></td><td>int</td><td>+0x26 (uint16)</td></tr>
+    <tr><td><code>field_28</code></td><td>int</td><td>+0x28 (uint16)</td></tr>
+    <tr><td><code>field_2E</code></td><td>int</td><td>+0x2E (uint16)</td></tr>
+  </tbody>
+</table>
+
+<h3>ObjectTypes enum</h3>
+<p>
+  An <em>enum</em> type named <code>ObjectTypes</code> with 45 named values (0–44).
+  This enum is used as the type for the <code>type</code> property on objects.
+  It allows you to select an object type by name (e.g., "Bomb", "Lift") instead of a raw integer.
+</p>
+<p>
+  In the SB1 project, sequel-only types are suffixed with "(II)" in the enum.
+  In the SB2 project, the same names appear without the "(II)" suffix since they are fully supported.
+</p>
+<p>
+  The integer value of each enum entry (0–44) corresponds to the array index in
+  <code>itemTypesArray</code> in <code>sblv.js</code>, which maps it to the BLP game type ID.
+</p>
+
+<div class="page-nav"></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div></div>
+<script src="assets/script.js"></script>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial 9 — Save a Level — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Tutorials</a> › Tutorial 9: Save a Level</nav>
+<h1>Tutorial 9: Save a Level</h1>
+<p>Saving a level in tiled-blupi means writing Tiled's in-memory map data back to the <code>.blp</code> binary file, replacing the original. The sblv.js extension handles the conversion from Tiled's format to BLP binary. This tutorial explains how to save and how to verify the save succeeded.</p>
+
+<div class="callout callout-warning">
+<strong>Saving overwrites the original file.</strong> Tiled does not create backups automatically. Before saving significant changes for the first time, make a manual backup copy of the <code>.blp</code> file. Copy it to a different folder or rename it (e.g., <code>blp1001.blp.bak</code>).
+</div>
+
+<h2>Step 1: Back Up the Original File (First Time)</h2>
+<ol>
+<li>In your file manager, navigate to the game's <code>level/</code> directory.</li>
+<li>Copy <code>blp1001.blp</code> (or whichever file you are editing) to a safe location, such as a <code>backup/</code> folder or your desktop.</li>
+<li>Return to Tiled.</li>
+</ol>
+
+<h2>Step 2: Save With Ctrl+S</h2>
+<ol>
+<li>In Tiled, press <kbd>Ctrl+S</kbd> (Windows/Linux) or <kbd>⌘S</kbd> (macOS).</li>
+<li>Tiled calls the sblv.js extension's <code>write()</code> function.</li>
+<li>The extension serializes all layers and map properties back into the BLP binary format and writes to the file.</li>
+<li>Tiled removes the asterisk (*) from the title bar tab, indicating the file is saved.</li>
+</ol>
+<div class="callout callout-info">
+<strong>What the extension writes:</strong>
+<ul>
+<li>Header fields (major_version, minor_version, background, music, ambiance, …)</li>
+<li>A zeroed region for unknown header fields</li>
+<li>Foreground layer: 10,000 uint16 values (column-major order)</li>
+<li>Decoration layer: 10,000 uint16 values (column-major order)</li>
+<li>Object array: exactly 200 object structs of 0x30 bytes each</li>
+<li>Trailing bytes to fill the file to exactly 50,468 bytes</li>
+</ul>
+</div>
+
+<h2>Step 3: Verify the File Size</h2>
+<p>A correctly written BLP file is always <strong>exactly 50,468 bytes</strong>. Verify this after saving:</p>
+<ol>
+<li>Open a terminal or file manager.</li>
+<li>Navigate to the game's <code>level/</code> directory.</li>
+<li>Check the file size of the saved file:</li>
+</ol>
+<pre><code># Linux / macOS
+ls -l blp1001.blp
+# Expected: -rw-r--r-- 1 user group 50468 Jun 13 10:00 blp1001.blp
+
+# Windows (PowerShell)
+(Get-Item blp1001.blp).Length
+# Expected: 50468</code></pre>
+<div class="callout callout-warning">
+<strong>If the file size is wrong:</strong> Do NOT load the corrupted file in the game. Restore from your backup. Then investigate what went wrong — common causes are the map being resized (not 100×100) or a scripting error in sblv.js. Check Tiled's JavaScript console for error messages (<strong>View → Script Console</strong>).
+</div>
+
+<h2>Step 4: Save As (to a Different File)</h2>
+<p>To save to a different file (e.g., to create a new custom level):</p>
+<ol>
+<li>Use <strong>File → Save As…</strong> (<kbd>Ctrl+Shift+S</kbd>).</li>
+<li>Navigate to the desired location and enter a new file name.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p>The new file will be written with the BLP format by sblv.js, just like a regular save. Note that the game only loads levels with the expected file names (<code>blp1001.blp</code>–<code>blp1025.blp</code> for SB1). Saving under a different name creates a file the game will not automatically find.</p>
+
+<h2>Step 5: Test in the Game</h2>
+<ol>
+<li>Launch Speedy Blupi.</li>
+<li>Select the level number corresponding to the file you edited.</li>
+<li>Play through the level and verify your edits appear correctly.</li>
+</ol>
+
+<h2>Troubleshooting Save Issues</h2>
+<table>
+<thead><tr><th>Problem</th><th>Cause</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>File size is not 50,468 bytes</td><td>Map was resized, or extension write error</td><td>Restore backup; do not resize map; check Script Console for errors</td></tr>
+<tr><td>Save dialog appears instead of overwriting</td><td>First save after "Open File" — Tiled may ask where to save</td><td>Navigate to the same <code>level/</code> directory and confirm the same file name</td></tr>
+<tr><td>Tiled shows an error on save</td><td>sblv.js threw an exception</td><td>Open Script Console (View → Script Console) and read the error message</td></tr>
+<tr><td>Game crashes after loading the level</td><td>Corrupted object data or invalid property values</td><td>Restore backup; check your edits step by step using the tutorials</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-success">
+<strong>Done!</strong> You now know how to safely save a level and verify the result. Final tutorial: <a href="avoid-common-mistakes.html">Tutorial 10: Avoid Common Mistakes</a>.
+</div>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

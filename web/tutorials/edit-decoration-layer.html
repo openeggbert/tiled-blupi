@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial 5 — Edit the Decoration Layer — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Tutorials</a> › Tutorial 5: Edit the Decoration Layer</nav>
+<h1>Tutorial 5: Edit the Decoration Layer</h1>
+<p>The <strong>Decoration</strong> layer holds purely visual tiles — trees, flowers, signs, atmospheric scenery — that are displayed on top of the terrain but do not affect gameplay. This tutorial explains how to work with this layer and highlights the important difference between the Decoration and Foreground layers.</p>
+
+<div class="callout callout-info">
+<strong>Tileset used:</strong> The Decoration layer uses the <code>explo</code> tileset, which has a special y-offset of 64 pixels (tiles appear lower than their grid position). See <a href="../tilesets/explo.html">the explo tileset page</a> for details.
+</div>
+
+<h2>Step 1: Select the Decoration Layer</h2>
+<ol>
+<li>In the <strong>Layers panel</strong>, click the row labeled <strong>Decoration</strong>.</li>
+<li>Confirm in the status bar that "Decoration" is the active layer.</li>
+</ol>
+<div class="callout callout-warning">
+<strong>Do not confuse Decoration with Foreground.</strong> Tiles on the Decoration layer have no collision — the player and enemies pass through them. Placing a wall tile on the Decoration layer will render it visually but the player will walk through it.
+</div>
+
+<h2>Step 2: Select the explo Tileset</h2>
+<ol>
+<li>In the <strong>Tilesets panel</strong>, select the <strong>explo</strong> tileset tab.</li>
+<li>Browse the available decoration tiles.</li>
+</ol>
+
+<h2>Step 3: Understanding the y=64 Offset</h2>
+<p>The <code>explo</code> tileset has a <code>tileoffset</code> of y=64 pixels defined in its <code>.tsx</code> file. This means every tile from this tileset is rendered 64 pixels <em>below</em> its nominal grid position when displayed in the game and in Tiled.</p>
+<p>Practical consequence: if you want a decoration tile to appear visually aligned with row 5 on the canvas, you must place it at row 3 in Tiled (since 2 rows × 32 pixels/row = 64 pixels of downward shift). The exact adjustment depends on the tile's visual size.</p>
+<div class="callout callout-info">
+<strong>Why does this offset exist?</strong> It is a design choice in the original game's rendering engine. The explo tileset tiles are meant to sit "on top of" terrain cells, and the 64px shift achieves this visual alignment. tiled-blupi reproduces this offset in the TSX definition so Tiled's preview matches the game.
+</div>
+
+<h2>Step 4: Paint Decoration Tiles</h2>
+<ol>
+<li>Press <kbd>B</kbd> for the Stamp Brush.</li>
+<li>Click a decoration tile in the explo tileset panel.</li>
+<li>Click on the canvas to paint the tile at the desired position.</li>
+</ol>
+<p>The same brush, eraser, and fill tools from Tutorial 4 apply here.</p>
+
+<h2>Step 5: Erase Decoration Tiles</h2>
+<ol>
+<li>Make sure the <strong>Decoration</strong> layer is active.</li>
+<li>Press <kbd>E</kbd> for the Eraser.</li>
+<li>Click or drag over the decoration tiles you want to remove.</li>
+</ol>
+<p>Erasing on the Decoration layer removes only decoration tiles; the Foreground tiles beneath are unaffected.</p>
+
+<h2>Step 6: View Both Layers Together</h2>
+<p>To see how the Decoration layer looks on top of the terrain:</p>
+<ul>
+<li>Make sure both the <strong>Foreground</strong> and <strong>Decoration</strong> layers have their eye icon visible (click the eye to toggle visibility).</li>
+<li>Toggle the Decoration layer's eye off to see just the terrain; toggle it back on to see decorations overlaid.</li>
+</ul>
+
+<h2>Decoration vs. Foreground — Quick Reference</h2>
+<table>
+<thead><tr><th>Property</th><th>Foreground</th><th>Decoration</th></tr></thead>
+<tbody>
+<tr><td>BLP storage layer</td><td>Foreground layer (offset 0x0364)</td><td>Decoration layer (offset 0x5184)</td></tr>
+<tr><td>Tileset</td><td>element</td><td>explo</td></tr>
+<tr><td>Affects collision</td><td>Yes</td><td>No</td></tr>
+<tr><td>Rendered above/below player</td><td>Below (terrain)</td><td>Above terrain, visual only</td></tr>
+<tr><td>y-offset in tileset</td><td>None</td><td>64 pixels downward</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-success">
+<strong>Done!</strong> You can now paint decorations. Next: <a href="edit-objects.html">Tutorial 6: Edit Objects</a>.
+</div>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

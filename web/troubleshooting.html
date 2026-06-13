@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base=""><input type="search" placeholder="Search docs…" aria-label="Search"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a><a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a><a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a><a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a><a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a><a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a><a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a><a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a><a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a><a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a><a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a><a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main"><div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> Troubleshooting</div>
+<h1>Troubleshooting</h1>
+<p class="lead">
+  Solutions to common problems when installing and using tiled-blupi.
+  If your problem is not listed here, check the <a href="faq.html">FAQ</a>
+  or the <a href="known-limitations.html">Known Limitations</a> page.
+</p>
+
+<h2>The Custom Format Doesn't Appear When Opening a .blp File</h2>
+<div class="callout warning">
+  <div class="callout-title">Symptom</div>
+  When you try to open a <code>.blp</code> file in Tiled, the format selector does not show
+  "Speedy Blupi level" or "Speedy Blupi 2 level".
+</div>
+<p><strong>Causes and fixes:</strong></p>
+<ol>
+  <li>
+    <strong>The project file was not opened.</strong><br>
+    You must open the <code>.tiled-project</code> file first. Merely having the extension installed
+    is not enough — Tiled only loads extensions when a project file that references them is open.
+    Go to <strong>File → Open</strong> and open <code>speedyblupi.tiled-project</code> or <code>speedyblupi2.tiled-project</code>.
+  </li>
+  <li>
+    <strong>The extension failed to load.</strong><br>
+    Open the Tiled scripting console (<strong>View → Views and Toolbars → Console</strong>).
+    If there is a JavaScript syntax error in <code>sblv.js</code>, it will be shown there.
+    Verify that the <code>sblv.js</code> file is present at <code>tiled/extensions/sblv.js</code>.
+  </li>
+  <li>
+    <strong>The extensionsPath is wrong.</strong><br>
+    Verify that the project file's <code>"extensionsPath"</code> value is <code>"extensions"</code>
+    and that the <code>extensions/</code> folder is at the same level as the project file.
+  </li>
+  <li>
+    <strong>The tiled folder is in the wrong place.</strong><br>
+    The <code>tiled/</code> folder must be directly inside the game installation directory,
+    not inside any other subfolder. Check that the structure matches the
+    <a href="installation.html">installation instructions</a>.
+  </li>
+</ol>
+
+<h2>The Level Opens But Shows No Tiles (Blank Canvas)</h2>
+<div class="callout warning">
+  <div class="callout-title">Symptom</div>
+  The level file opens without error, but the canvas shows a blank grid with no tiles visible.
+</div>
+<p><strong>Causes and fixes:</strong></p>
+<ol>
+  <li>
+    <strong>Wrong format selected.</strong><br>
+    If you chose "Speedy Blupi 2 level" for an SB1 file (or vice versa), the tile values may
+    be misinterpreted. Close and reopen the file, selecting the correct format.
+  </li>
+  <li>
+    <strong>The tile PNG images are missing.</strong><br>
+    Tiled may show a blank canvas if the PNG images for the <code>object</code> tileset cannot be found.
+    Verify that the <code>tilesets/object/</code> directory exists and contains numbered PNG files.
+  </li>
+  <li>
+    <strong>The Foreground layer is hidden.</strong><br>
+    In the Layers panel, check that the Foreground layer's visibility (eye icon) is turned on.
+  </li>
+  <li>
+    <strong>The file is not a level file.</strong><br>
+    Only <code>WORLD###.BLP</code> and <code>u###-###.blp</code> files are level files.
+    Other <code>.blp</code> files in the DATA folder may parse without error but produce empty content.
+  </li>
+</ol>
+
+<h2>Objects Are Not Visible</h2>
+<div class="callout warning">
+  <div class="callout-title">Symptom</div>
+  The level opens but no objects appear in the Objects layer, or some appear as blank/missing.
+</div>
+<p><strong>Causes and fixes:</strong></p>
+<ol>
+  <li>
+    <strong>The Objects layer is hidden.</strong><br>
+    Toggle the eye icon next to the Objects layer in the Layers panel.
+  </li>
+  <li>
+    <strong>The Object Types PNG directory is missing.</strong><br>
+    Verify that <code>tilesets/Object Types/</code> exists and contains the correct number of PNG files
+    (34 for SB1, 44 for SB2).
+  </li>
+  <li>
+    <strong>The Player Start PNG directory is missing.</strong><br>
+    Player start objects use <code>tilesets/Player Start/</code> (4 PNG files). Verify it exists.
+  </li>
+  <li>
+    <strong>The level genuinely has no objects.</strong><br>
+    Some levels may have all 200 object slots empty. This is valid — the Objects layer would be empty.
+  </li>
+</ol>
+
+<h2>The Background Image is Not Showing</h2>
+<p>
+  The background image is loaded from the game's <code>IMAGE16/</code> or <code>IMAGE08/</code> folder.
+  If the <code>tiled/</code> folder is not placed inside the game directory (one level above the
+  <code>IMAGE16/</code> folder), the extension cannot find the background images.
+</p>
+<p>
+  If the background image is missing, the Background layer will be blank. This does not affect
+  editing or saving — the background is display-only.
+</p>
+
+<h2>Save Produces a Corrupted Level</h2>
+<div class="callout danger">
+  <div class="callout-title">Always keep backups</div>
+  Before editing any level file, copy the original to a safe location.
+  Save corruption cannot be undone.
+</div>
+<p><strong>Common causes:</strong></p>
+<ul>
+  <li>
+    <strong>Unknown header region zeroed.</strong><br>
+    The extension writes zeros to the 804-byte unknown header region (0x40–0x363).
+    Some levels may store important data there. If a level crashes the game after editing,
+    compare the saved file to the original using a hex editor.
+  </li>
+  <li>
+    <strong>More than 200 objects.</strong><br>
+    If you placed more than 200 objects, the extension silently truncates. Objects beyond the
+    200th are discarded without warning. Keep object count at or below 200.
+  </li>
+  <li>
+    <strong>Wrong format used for save.</strong><br>
+    If you opened an SB1 file with the SB2 format (or vice versa) and saved, the output
+    will have incorrect <code>minor_version</code> and potentially incorrect object type IDs.
+  </li>
+</ul>
+
+<h2>Changing background Property Doesn't Update the Background Image</h2>
+<p>
+  This is expected behavior. The background image is loaded once when the level is opened.
+  Changing the <code>background</code> map property updates the value in the BLP file on save,
+  but Tiled does not refresh the displayed image. Close and reopen the level to see the new background.
+</p>
+
+<h2>The Game Crashes After Loading an Edited Level</h2>
+<p>Possible causes:</p>
+<ul>
+  <li>The unknown header region (0x40–0x363) was zeroed and contained critical game data. This is a known limitation.</li>
+  <li>Invalid tile IDs — tile index values beyond the tileset size. The extension does not validate these.</li>
+  <li>Invalid object type IDs — using SB2-only object types in an SB1 level.</li>
+  <li>The <code>major_version</code> was accidentally changed to a non-1 value.</li>
+</ul>
+<p>In all cases, restore the backup and repeat the edit more carefully.</p>
+
+<h2>Tiled Reports a JavaScript Error When Loading the Project</h2>
+<p>Check the scripting console for the exact error message. Common issues:</p>
+<ul>
+  <li><strong>File not found:</strong> The <code>sblv.js</code> path does not match <code>extensionsPath</code>.</li>
+  <li><strong>Syntax error:</strong> The <code>sblv.js</code> file is corrupted or modified incorrectly. Re-download from the repository.</li>
+  <li><strong>API incompatibility:</strong> The Tiled version is too old to support scripted map formats. Upgrade to Tiled 1.3 or later.</li>
+</ul>
+
+<div class="page-nav"><a href="known-limitations.html">← Known Limitations</a>
+  <a class="nav-next" href="faq.html">FAQ →</a></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div></div>
+<script src="assets/script.js"></script>
+</body></html>

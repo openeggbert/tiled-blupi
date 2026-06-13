@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contributing — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Development</a> › Contributing</nav>
+<h1>Contributing</h1>
+<p>tiled-blupi is an open-source project hosted on GitHub (openeggbert/tiled-blupi). Contributions of all kinds are welcome — bug reports, documentation improvements, new object type support, reverse-engineering findings, and code fixes.</p>
+
+<h2>Types of Contributions</h2>
+<table>
+<thead><tr><th>Contribution Type</th><th>How to Submit</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>Bug report</td><td>Open a GitHub Issue</td><td>Incorrect tile rendering, wrong object type displayed, file size mismatch</td></tr>
+<tr><td>Reverse-engineering finding</td><td>GitHub Issue or Pull Request with documentation</td><td>Identifying what an unknown header field does, mapping a new object type ID</td></tr>
+<tr><td>New object type support</td><td>Pull Request modifying sblv.js and the TSX file</td><td>Adding support for type IDs that tiled-blupi does not yet know about</td></tr>
+<tr><td>Documentation fix</td><td>Pull Request modifying README.md or (for this doc site) the HTML files</td><td>Correcting wrong offset values, adding missing information</td></tr>
+<tr><td>Tileset improvement</td><td>Pull Request modifying a TSX file</td><td>Adding missing tiles, fixing wrong image paths</td></tr>
+</tbody>
+</table>
+
+<h2>How to Submit a Pull Request</h2>
+<ol>
+<li><strong>Fork</strong> the repository on GitHub.</li>
+<li><strong>Clone</strong> your fork locally.</li>
+<li>Create a new branch for your change: <code>git checkout -b add-type-44</code></li>
+<li>Make your changes following the guidelines below.</li>
+<li>Commit with a clear message: <code>git commit -m "Add object type ID 44 to SB2 itemTypesArray"</code></li>
+<li>Push to your fork: <code>git push origin add-type-44</code></li>
+<li>Open a Pull Request on GitHub.</li>
+</ol>
+
+<h2>Code Style Guidelines (sblv.js)</h2>
+<ul>
+<li>Use <code>const</code> for values that never change, <code>let</code> for variables that do.</li>
+<li>Keep the constants at the top of the file.</li>
+<li>When adding a new object type, add it to <code>itemTypesArray</code> at the end, not in the middle — inserting in the middle shifts all existing tile indices and breaks level files.</li>
+<li>Do not add duplicate entries to <code>itemTypesArray</code>. Each BLP type ID should appear at most once.</li>
+<li>Add a comment next to new array entries if you know their in-game purpose.</li>
+</ul>
+
+<h2>TSX File Guidelines</h2>
+<ul>
+<li>Always add new tiles at the <em>end</em> of the tileset (highest existing id + 1).</li>
+<li>Update the <code>tilecount</code> attribute whenever you add or remove tiles.</li>
+<li>Use paths relative to the TSX file location; do not use absolute paths.</li>
+<li>Do not remove existing tiles — removing a tile changes all subsequent tile indices, breaking existing level files.</li>
+</ul>
+
+<h2>What to Include in a Bug Report</h2>
+<ul>
+<li>Tiled version</li>
+<li>Operating system</li>
+<li>Which game (SB1 or SB2)</li>
+<li>The .blp file (attach to the Issue if possible, or the level number if it is an official level)</li>
+<li>Steps to reproduce</li>
+<li>Expected behavior</li>
+<li>Actual behavior</li>
+<li>Content of the Tiled Script Console (if relevant)</li>
+</ul>
+
+<h2>Accuracy Standards for Documentation</h2>
+<p>If you are contributing documentation (including this doc site), please follow the evidence tagging conventions:</p>
+<ul>
+<li><strong>✓ sblv.js</strong> — fact confirmed by reading the extension source code</li>
+<li><strong>✓ README</strong> — fact confirmed by the repository README</li>
+<li><strong>✓ TSX</strong> — fact confirmed by reading a TSX file</li>
+<li><strong>~ Inferred</strong> — reasonable deduction from available evidence, not directly stated</li>
+<li><strong>? Needs verification</strong> — uncertain; should be marked with a callout box in the docs</li>
+</ul>
+<p>Do not present inferred or uncertain information as confirmed fact.</p>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

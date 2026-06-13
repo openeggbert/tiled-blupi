@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speedy Blupi — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…" aria-label="Search"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a>
+  <a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <a href="../using-tiled.html">Using Tiled</a><a href="../project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../supported-games.html">Supported Games</a>
+  <a href="../games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="../games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a>
+  <a href="../tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Properties</a>
+  <a href="../object-properties.html">Object Properties</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a>
+  <a href="../tilesets/object.html">object</a><a href="../tilesets/element.html">element</a>
+  <a href="../tilesets/explo.html">explo</a><a href="../tilesets/blupi000.html">blupi000–003</a>
+  <a href="../tilesets/player-start.html">Player Start</a>
+  <a href="../tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="../extension/index.html">Overview</a>
+  <a href="../extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a>
+  <a href="../extension/binary-offsets.html">Binary Offsets</a>
+  <a href="../extension/object-conversion.html">Object Conversion</a>
+  <a href="../extension/layer-conversion.html">Layer Conversion</a>
+  <a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a>
+  <a href="../tutorials/install-into-game-folder.html">Install</a>
+  <a href="../tutorials/open-a-level.html">Open a Level</a>
+  <a href="../tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="../tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="../tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="../tutorials/edit-objects.html">Edit Objects</a>
+  <a href="../tutorials/set-player-start.html">Set Player Start</a>
+  <a href="../tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="../tutorials/save-a-level.html">Save a Level</a>
+  <a href="../tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a>
+  <a href="../reference/map-properties.html">Map Properties</a>
+  <a href="../reference/object-properties.html">Object Properties</a>
+  <a href="../reference/object-types.html">Object Types</a>
+  <a href="../reference/layers.html">Layers</a>
+  <a href="../reference/file-locations.html">File Locations</a>
+  <a href="../reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a>
+  <a href="../formats/blp-level-format.html">BLP Level Format</a>
+  <a href="../formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="../formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Developer Guide</a>
+  <a href="../development/repository-map.html">Repository Map</a>
+  <a href="../development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="../development/adding-object-types.html">Adding Object Types</a>
+  <a href="../development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="../development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="../development/contributing.html">Contributing</a>
+  <a href="../development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="../assets.html">Assets</a><a href="../editing-workflow.html">Editing Workflow</a>
+  <a href="../troubleshooting.html">Troubleshooting</a>
+  <a href="../known-limitations.html">Known Limitations</a>
+  <a href="../faq.html">FAQ</a><a href="../license.html">License</a>
+  <a href="../search.html">Search</a>
+</nav>
+<div class="main"><div class="content">
+<div class="breadcrumb"><a href="../index.html">Home</a> <span class="sep">›</span> <a href="index.html">Games</a> <span class="sep">›</span> Speedy Blupi</div>
+<h1>Speedy Blupi</h1>
+<p class="lead">The original Speedy Blupi game (1997) — tiled-blupi support details.</p>
+
+<h2>Game Overview</h2>
+<p>Speedy Blupi (also known as Speedy Blupi 1) is a side-scrolling platform game developed by Daniel Roux
+and published by Epsitec SA. It features the character Blupi navigating levels filled with enemies, collectibles,
+and environmental hazards. The game was released for Windows and is available from
+<a href="https://www.blupi.org/">blupi.org</a>.</p>
+
+<h2>tiled-blupi Support for SB1</h2>
+<table>
+  <thead><tr><th>Component</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Repository folder</td><td><code>Speedy Blupi/tiled/</code></td></tr>
+    <tr><td>Project file</td><td><code>speedyblupi.tiled-project</code></td></tr>
+    <tr><td>Extension file</td><td><code>extensions/sblv.js</code> (513 lines)</td></tr>
+    <tr><td>Tiled format ID</td><td><code>sblv</code></td></tr>
+    <tr><td>Format name in Tiled</td><td>Speedy Blupi level</td></tr>
+    <tr><td>File extension</td><td><code>.blp</code> / <code>.BLP</code></td></tr>
+    <tr><td>Default minor_version</td><td>2</td></tr>
+    <tr><td>object tileset tiles</td><td>246</td></tr>
+    <tr><td>element tileset tiles</td><td>187</td></tr>
+    <tr><td>explo tileset tiles</td><td>54</td></tr>
+    <tr><td>blupi000–003 tiles (each)</td><td>291</td></tr>
+    <tr><td>Object Types tileset tiles</td><td>34</td></tr>
+    <tr><td>Supported object types</td><td>Enum indices 0–33 + 41–44 (player starts)</td></tr>
+    <tr><td>Sequel-only types</td><td>Not supported (indices 34–40 in the enum are listed but have no write cases)</td></tr>
+  </tbody>
+</table>
+
+<h2>SB1 itemTypesArray</h2>
+<p>The 34 non-player-start object types supported by SB1 (plus the 4 player start types):</p>
+<pre>// SB1 itemTypesArray (34 game object entries + 4 player start entries):
+const itemTypesArray = [
+  1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,  // indices 0–16
+  19,20,21,                                       // indices 17–19 (BLP ID 18 absent)
+  24,25,26,27,28,29,30,31,32,33,                 // indices 20–29
+  34,40,44,46,                                   // indices 30–33
+  // (SB1 stops here for game objects)
+  200,201,202,203                                // indices 34–37 (player starts)
+  // Note: in SB2 the player starts are at indices 41–44
+];</pre>
+<p>Wait — in SB1, <code>itemTypesArray</code> has 34 entries for game objects and the player starts
+(200–203) are appended after. The exact positions may differ; consult the SB1 <code>sblv.js</code>
+source for the definitive array.</p>
+
+<h2>Installation Path</h2>
+<pre>SpeedyBlupi/                    ← SB1 game installation directory
+├── tiled/                      ← copy from Speedy Blupi/tiled/ in repository
+│   ├── speedyblupi.tiled-project
+│   ├── extensions/sblv.js
+│   └── tilesets/ …
+├── DATA/
+│   ├── WORLD001.BLP
+│   └── …
+└── IMAGE16/</pre>
+
+<h2>Opening a SB1 Level</h2>
+<ol>
+  <li>Open <code>speedyblupi.tiled-project</code> in Tiled.</li>
+  <li>File → Open → navigate to <code>DATA/</code>.</li>
+  <li>Select a <code>WORLD###.BLP</code> file.</li>
+  <li>Choose format: <strong>Speedy Blupi level</strong>.</li>
+</ol>
+<div class="page-nav"><a href="index.html">← Games</a>
+  <a class="nav-next" href="speedy-blupi-ii.html">Speedy Blupi II →</a></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="../index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="../license.html">License</a></footer>
+</div></div>
+<script src="../assets/script.js"></script>
+</body></html>

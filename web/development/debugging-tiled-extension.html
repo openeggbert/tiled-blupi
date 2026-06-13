@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debugging the Tiled Extension — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Development</a> › Debugging</nav>
+<h1>Debugging the Tiled Extension</h1>
+<p>When sblv.js encounters an error, Tiled may show a vague error message or silently fail. This page describes the tools and techniques available to debug the extension.</p>
+
+<h2>The Tiled Script Console</h2>
+<p>Tiled provides a JavaScript console for viewing output from extensions:</p>
+<ol>
+<li>In Tiled, open <strong>View → Script Console</strong> (or find it in the Windows menu on some versions).</li>
+<li>The console shows all <code>console.log()</code>, <code>console.warn()</code>, and <code>console.error()</code> output from loaded extensions.</li>
+<li>If sblv.js throws an uncaught exception, it is displayed here with a stack trace.</li>
+</ol>
+<div class="callout callout-info">
+<strong>Always check the Script Console first</strong> when a .blp file fails to open, saves incorrectly, or shows unexpected behavior.
+</div>
+
+<h2>Adding Temporary console.log Statements</h2>
+<p>To trace the execution of sblv.js, add <code>console.log()</code> calls to the extension source. Example:</p>
+<pre><code>// At the beginning of read():
+console.log("sblv.js: reading file:", filename);
+
+// After reading major_version:
+console.log("major_version:", major_version);
+
+// When encountering an object:
+console.log("object at index:", i, "type:", type_id);
+</code></pre>
+<p>After adding these statements, <strong>restart Tiled</strong> (the extension is only loaded at startup). Then open a .blp file and watch the Script Console for output.</p>
+<div class="callout callout-warning">
+<strong>Remember to remove debug logging before committing.</strong> Excessive logging slows down the extension when opening large levels with many objects.
+</div>
+
+<h2>Verifying the Extension Is Loaded</h2>
+<p>To confirm sblv.js is loaded:</p>
+<ol>
+<li>Open the Script Console.</li>
+<li>Type: <code>tiled.log(JSON.stringify(Object.keys(tiled)))</code> and press Enter.</li>
+<li>Alternatively, check whether the file chooser shows "sblv" as an available format when using File → Open.</li>
+</ol>
+<p>If the extension is not loaded, the Script Console will show an error like "Could not find extension file" or "SyntaxError in sblv.js".</p>
+
+<h2>Common Extension Errors and Their Causes</h2>
+<table>
+<thead><tr><th>Error / Symptom</th><th>Likely Cause</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>"Cannot read property 'read' of undefined"</td><td>The BinaryFile API is not available — extension loaded before Tiled is fully initialized</td><td>Should not happen in normal use; report as a Tiled bug if it does</td></tr>
+<tr><td>"major_version mismatch"</td><td>Opening an SB2 file with the SB1 extension, or vice versa</td><td>Use the correct project file for the game version</td></tr>
+<tr><td>Tiles show as pink/missing boxes</td><td>PNG images not found at the relative path in the TSX</td><td>Verify project is installed inside the game directory; check image/ folder exists</td></tr>
+<tr><td>File saved but size is wrong</td><td>An error occurred during write; partial data was written</td><td>Check Script Console for exceptions; restore from backup</td></tr>
+<tr><td>SyntaxError in Script Console on Tiled start</td><td>A JavaScript syntax error in sblv.js (e.g., after manual editing)</td><td>Fix the JS syntax error; use a linter (<code>node --check sblv.js</code>)</td></tr>
+<tr><td>Objects missing after save</td><td>More than 200 objects placed; extension silently dropped extras</td><td>Count objects and keep within the 200 limit</td></tr>
+</tbody>
+</table>
+
+<h2>Using Node.js to Syntax-Check sblv.js</h2>
+<p>You do not need to open Tiled to check for syntax errors in the extension:</p>
+<pre><code># Syntax check only (does not run the code):
+node --check sblv.js
+
+# If there is a syntax error, node prints it with line number.
+# If there is no output, the syntax is valid.</code></pre>
+<p>Note: the script uses Tiled-specific APIs (BinaryFile, TileMap, etc.) that do not exist in Node.js. Running the script with <code>node sblv.js</code> will fail with ReferenceErrors. Use <code>--check</code> only.</p>
+
+<h2>Debugging a Specific Object's Properties</h2>
+<p>To check what values sblv.js reads for a specific object:</p>
+<ol>
+<li>Add a <code>console.log</code> inside the object-reading loop in <code>read()</code>.</li>
+<li>Open the level in Tiled.</li>
+<li>Read the output to see every field of every object struct.</li>
+</ol>
+<p>This is useful for identifying unknown fields or verifying that a specific type ID is being parsed correctly.</p>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

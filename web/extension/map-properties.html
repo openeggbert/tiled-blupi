@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map Properties (Extension) — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Properties</a><a href="../object-properties.html">Object Properties</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets</a><a href="../tilesets/object.html">object</a><a href="../tilesets/explo.html">explo</a><a href="../tilesets/player-start.html">Player Start</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="../extension/index.html">Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Deep</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conv.</a><a href="../extension/layer-conversion.html">Layer Conv.</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">Install</a><a href="../tutorials/open-a-level.html">Open Level</a><a href="../tutorials/edit-objects.html">Objects</a><a href="../tutorials/create-moving-object.html">Moving Object</a><a href="../tutorials/save-a-level.html">Save</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Index</a><a href="../reference/map-properties.html">Map Props</a><a href="../reference/object-types.html">Object Types</a><a href="../reference/layers.html">Layers</a><a href="../reference/binary-offsets.html">Binary Offsets</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Index</a><a href="../formats/blp-level-format.html">BLP</a><a href="../formats/tiled-project-format.html">Project</a><a href="../formats/tsx-tilesets.html">TSX</a><a href="../formats/png-assets.html">PNG</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Guide</a><a href="../development/understanding-sblv-js.html">sblv.js</a><a href="../development/adding-object-types.html">Add Types</a><a href="../development/contributing.html">Contribute</a>
+  <div class="sidebar-section">Other</div>
+  <a href="../troubleshooting.html">Troubleshoot</a><a href="../faq.html">FAQ</a><a href="../license.html">License</a><a href="../search.html">Search</a>
+</nav>
+<div class="main"><div class="content">
+
+<div class="breadcrumb"><a href="../index.html">Home</a> <span class="sep">›</span> <a href="index.html">Extension</a> <span class="sep">›</span> Map Properties</div>
+<h1>Map Properties in sblv.js</h1>
+<p class="lead">How map properties are read from and written to the BLP binary header.</p>
+<h2>Reading</h2>
+<pre><code>tilemap.setProperty("major_version", data.getUint16(0, true));
+tilemap.setProperty("minor_version", data.getUint16(2, true));
+tilemap.setProperty("horz_scroll", data.getInt32(0xD4, true) == 100);
+tilemap.setProperty("vert_scroll", data.getInt32(0xD8, true) == 100);
+tilemap.setProperty("music", data.getInt16(0xDE, true) - 1);
+var bgnum = data.getInt16(0xE0, true);
+tilemap.setProperty("background", bgnum);
+// Name: read ASCII bytes from 0x178 until null or 0x1A0
+var lvlname = '';
+for (var i = 0x178; i < 0x1A0; i++) {
+    var c = data.getUint8(i);
+    if (c == 0) break;
+    lvlname += String.fromCharCode(c);
+}
+tilemap.setProperty("name", lvlname);</code></pre>
+<h2>Writing</h2>
+<pre><code>data.setUint16(0, map.property("major_version") ?? 1, true);
+data.setUint16(2, map.property("minor_version") ?? 2, true); // (3 for SB2)
+data.setInt32(0xD4, (map.property("horz_scroll") ?? true) ? 100 : 0, true);
+data.setInt32(0xD8, (map.property("vert_scroll") ?? true) ? 100 : 0, true);
+data.setInt16(0xDE, (map.property("music") ?? -1) + 1, true);
+data.setInt16(0xE0, map.property("background") ?? 0, true);
+var lvlname = map.property("name") ?? '';
+for (var i = 0; i < Math.min(lvlname.length, 40); i++)
+    data.setUint8(0x178 + i, lvlname.charCodeAt(i));</code></pre>
+<p>Note: <code>horz_scroll</code> and <code>vert_scroll</code> default to <code>true</code> if the property is missing (the <code>??</code> default is <code>true</code>). This means new maps will have scrolling enabled by default.</p>
+<div class="page-nav">
+  <a href="layer-conversion.html">← Layer Conversion</a>
+  <a class="nav-next" href="limitations.html">Limitations →</a>
+</div>
+
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="../license.html">License</a></footer>
+</div></div>
+<script src="../assets/script.js"></script>
+</body></html>

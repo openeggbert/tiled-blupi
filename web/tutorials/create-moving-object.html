@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial 8 — Create a Moving Object — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Tutorials</a> › Tutorial 8: Create a Moving Object</nav>
+<h1>Tutorial 8: Create a Moving Object</h1>
+<p>Some game objects in Speedy Blupi can move back and forth between two positions on a schedule — for example, a platform that swings left and right, or an enemy that patrols between two points. This tutorial shows you how to configure these motion properties.</p>
+
+<div class="callout callout-info">
+<strong>Which objects can move?</strong> Any object in the <code>object-types</code> tileset can have motion properties set. Whether the game actually animates the motion depends on the object type and what behavior the game engine assigns to it. Not all object types support motion — only those for which the game has patrol/platform logic.
+</div>
+
+<h2>Concept: Motion Properties</h2>
+<p>A moving object oscillates between two points:</p>
+<ul>
+<li><strong>Point A</strong> — the object's primary position (set by the object's x, y coordinates on the canvas).</li>
+<li><strong>Point B</strong> — the endpoint position, set by the <code>endpoint_x</code> and <code>endpoint_y</code> properties.</li>
+</ul>
+<p>The timing is controlled by four properties measured in game ticks (the game's internal time unit, not seconds):</p>
+<table>
+<thead><tr><th>Property</th><th>BLP Offset in Object Struct</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>a_to_b_time</code></td><td>+0x1C (uint16)</td><td>Number of ticks to travel from A to B</td></tr>
+<tr><td><code>b_to_a_time</code></td><td>+0x1E (uint16)</td><td>Number of ticks to travel from B back to A</td></tr>
+<tr><td><code>a_wait</code></td><td>+0x20 (uint16)</td><td>Ticks to pause at A before starting the trip to B</td></tr>
+<tr><td><code>b_wait</code></td><td>+0x22 (uint16)</td><td>Ticks to pause at B before starting the trip back to A</td></tr>
+</tbody>
+</table>
+
+<h2>Step 1: Place the Object at Its Starting Position (Point A)</h2>
+<ol>
+<li>In the <strong>Tilesets panel</strong>, select the <strong>object-types</strong> tileset.</li>
+<li>Click the tile for the object type you want (e.g., a platform or enemy).</li>
+<li>Use the Insert Tile Object tool to place the object on the canvas at position A — the starting point.</li>
+</ol>
+
+<h2>Step 2: Select the Object and Open Its Properties</h2>
+<ol>
+<li>Press <kbd>S</kbd> for the Select tool.</li>
+<li>Click the object you just placed. Its properties appear in the <strong>Properties panel</strong>.</li>
+</ol>
+
+<h2>Step 3: Set the Endpoint (Point B)</h2>
+<ol>
+<li>In the Properties panel, find the <code>endpoint_x</code> property.</li>
+<li>Double-click the value and enter the x grid coordinate of Point B (0–99).</li>
+<li>Find <code>endpoint_y</code> and enter the y grid coordinate of Point B.</li>
+</ol>
+<div class="callout callout-info">
+<strong>Example:</strong> If the object is at x=10, y=20 and you want it to move to x=20, y=20 (horizontal motion), set <code>endpoint_x=20</code>, <code>endpoint_y=20</code>.
+</div>
+
+<h2>Step 4: Set the Travel Times</h2>
+<ol>
+<li>Find <code>a_to_b_time</code> in properties and set it to the number of ticks for A→B travel. A value of 60 is approximately 1 second if the game runs at 60 Hz.</li>
+<li>Find <code>b_to_a_time</code> and set it. You can use the same value as <code>a_to_b_time</code> for symmetric motion, or a different value for asymmetric.</li>
+</ol>
+
+<h2>Step 5: Set Wait Times (Optional)</h2>
+<ol>
+<li>Find <code>a_wait</code> and enter the number of ticks to pause at Point A. Use 0 for no pause.</li>
+<li>Find <code>b_wait</code> and enter the pause at Point B. Use 0 for no pause.</li>
+</ol>
+<div class="callout callout-info">
+<strong>Worked example:</strong> A platform that moves from x=5 to x=15, takes 2 seconds each way, and waits 1 second at each end:
+<br>• <code>endpoint_x = 15</code>, <code>endpoint_y = (same as start y)</code>
+<br>• <code>a_to_b_time = 120</code>, <code>b_to_a_time = 120</code> (120 ticks ≈ 2 s at 60 Hz)
+<br>• <code>a_wait = 60</code>, <code>b_wait = 60</code> (60 ticks ≈ 1 s at 60 Hz)
+</div>
+
+<h2>Step 6: Verify the Endpoint Is Visible</h2>
+<p>Tiled does not draw a line or marker from the object to its endpoint. To visually confirm the endpoint position, you can temporarily place a tile at that grid cell on the canvas, note the coordinates, then remove it. Alternatively, use Tiled's coordinate display in the status bar — hover your mouse over the endpoint cell and read the x, y shown.</p>
+
+<h2>Step 7: Test In-Game</h2>
+<p>Save the level (<a href="save-a-level.html">Tutorial 9</a>) and load it in Speedy Blupi. Observe whether the object moves correctly. Adjust <code>a_to_b_time</code> / <code>b_to_a_time</code> to tune the speed.</p>
+<div class="callout callout-warning">
+<strong>Remember:</strong> If the object type does not support motion in the game engine, the motion properties will be stored in the file but will have no effect. The game decides what to do with each object type.
+</div>
+
+<div class="callout callout-success">
+<strong>Done!</strong> You have configured a moving object. Next: <a href="save-a-level.html">Tutorial 9: Save a Level</a>.
+</div>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

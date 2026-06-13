@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding sblv.js — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Development</a> › Understanding sblv.js</nav>
+<h1>Understanding sblv.js</h1>
+<p>This page provides a developer-level walkthrough of the <code>sblv.js</code> extension source code. It explains the module's structure, key variables, and how the read and write functions are organized.</p>
+
+<h2>Module Structure</h2>
+<p>The file is a single JavaScript file (not an ES module — Tiled loads it as a plain script). It is organized into these logical sections:</p>
+<ol>
+<li><strong>Constants</strong> — MAJOR_VERSION, DEFAULT_MINOR_VERSION, binary offsets (header fields, layer starts, object array start)</li>
+<li><strong>itemTypesArray</strong> — The mapping from object-type tile index to BLP type ID</li>
+<li><strong>Helper functions</strong> — Utility functions for reading/writing typed values from/to DataView</li>
+<li><strong>read() function</strong> — Reads a <code>.blp</code> file and returns a Tiled Map object</li>
+<li><strong>write() function</strong> — Writes a Tiled Map object to a <code>.blp</code> file</li>
+<li><strong>sblvMapFormat object</strong> — The format descriptor object with name, extension, read, write, and supportsFileType properties</li>
+<li><strong>Registration call</strong> — <code>tiled.registerMapFormat("sblv", sblvMapFormat)</code></li>
+</ol>
+
+<h2>Key Constants and Variables</h2>
+<table>
+<thead><tr><th>Identifier</th><th>Value (SB1)</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>MAJOR_VERSION</code></td><td>1</td><td>Expected major version in file header; mismatch causes read failure</td></tr>
+<tr><td><code>DEFAULT_MINOR_VERSION</code></td><td>2</td><td>Written as minor_version when creating a new map (not used in tiled-blupi's current implementation)</td></tr>
+<tr><td><code>FOREGROUND_OFFSET</code></td><td>0x0364</td><td>Byte offset where foreground tile layer data begins</td></tr>
+<tr><td><code>DECORATION_OFFSET</code></td><td>0x5184</td><td>Byte offset where decoration tile layer data begins</td></tr>
+<tr><td><code>OBJECTS_OFFSET</code></td><td>0x9FA4</td><td>Byte offset where the 200-entry object array begins</td></tr>
+<tr><td><code>OBJECT_SIZE</code></td><td>0x30</td><td>Size of one object struct in bytes</td></tr>
+<tr><td><code>MAX_OBJECTS</code></td><td>200</td><td>Maximum number of objects the BLP format can store</td></tr>
+<tr><td><code>itemTypesArray</code></td><td>[0,1,2,…,33]</td><td>Maps (tile_index - 1) → BLP type ID for regular objects</td></tr>
+</tbody>
+</table>
+
+<h2>The read() Function</h2>
+<p>The <code>read(filename)</code> function:</p>
+<ol>
+<li>Opens the file using Tiled's <code>BinaryFile</code> API.</li>
+<li>Wraps the content in a <code>DataView</code> for typed access.</li>
+<li>Reads and validates <code>major_version</code> at offset 0x0000. If it does not match <code>MAJOR_VERSION</code>, returns <code>null</code> (Tiled will show an error).</li>
+<li>Reads header fields and stores them as map custom properties.</li>
+<li>Creates a <code>TileMap</code> with width=100, height=100.</li>
+<li>Creates and populates the Foreground tile layer using an edit batch (<code>layer.edit()</code> / <code>edit.setTile()</code> / <code>edit.apply()</code>).</li>
+<li>Creates and populates the Decoration tile layer similarly.</li>
+<li>Creates the Objects layer, then iterates over 200 object slots, creating Tiled tile objects for non-zero entries.</li>
+<li>Creates a Background image layer as a visual placeholder.</li>
+<li>Returns the completed <code>TileMap</code>.</li>
+</ol>
+
+<h2>The write() Function</h2>
+<p>The <code>write(map, filename)</code> function:</p>
+<ol>
+<li>Opens the file for binary writing using <code>BinaryFile</code>.</li>
+<li>Creates a <code>DataView</code> over a newly allocated <code>ArrayBuffer</code> of exactly 50,468 bytes (or the appropriate file size).</li>
+<li>Writes header fields from map custom properties.</li>
+<li>Zeros the unknown header region.</li>
+<li>Iterates all 100×100 cells of the Foreground layer and writes each tile value (or 0xFFFF for empty) to the column-major position in the buffer.</li>
+<li>Does the same for the Decoration layer.</li>
+<li>Iterates objects on the Objects layer: for each, writes the struct fields. Player starts (class=Blupi) are written with type 200+tile_index; regular objects use itemTypesArray. Remaining slots are zeroed.</li>
+<li>Writes trailing zeros.</li>
+<li>Commits the buffer to disk.</li>
+</ol>
+
+<h2>Tiled API Used by sblv.js</h2>
+<table>
+<thead><tr><th>API</th><th>Used For</th></tr></thead>
+<tbody>
+<tr><td><code>tiled.registerMapFormat(name, format)</code></td><td>Registers the scripted format</td></tr>
+<tr><td><code>new BinaryFile(path, mode)</code></td><td>Open file for reading or writing</td></tr>
+<tr><td><code>file.readAll()</code></td><td>Read entire file content into ArrayBuffer</td></tr>
+<tr><td><code>file.write(buffer)</code></td><td>Write ArrayBuffer to file</td></tr>
+<tr><td><code>new TileMap()</code></td><td>Create a new map object</td></tr>
+<tr><td><code>new TileLayer()</code></td><td>Create a tile layer</td></tr>
+<tr><td><code>new ObjectGroup()</code></td><td>Create an object layer</td></tr>
+<tr><td><code>new MapObject()</code></td><td>Create a game object</td></tr>
+<tr><td><code>map.addLayer(layer)</code></td><td>Add layer to map</td></tr>
+<tr><td><code>tileLayer.edit()</code></td><td>Begin batch tile editing</td></tr>
+<tr><td><code>edit.setTile(x, y, tile)</code></td><td>Place a tile in the batch</td></tr>
+<tr><td><code>edit.apply()</code></td><td>Commit the batch edit</td></tr>
+<tr><td><code>map.setProperty(name, value)</code></td><td>Set a map-level custom property</td></tr>
+<tr><td><code>object.setProperty(name, value)</code></td><td>Set a per-object custom property</td></tr>
+</tbody>
+</table>
+
+<p>See also: <a href="../extension/read-flow.html">Read Flow</a> and <a href="../extension/write-flow.html">Write Flow</a> for step-by-step descriptions of these functions.</p>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

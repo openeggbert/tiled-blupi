@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object Types — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base=""><input type="search" placeholder="Search docs…" aria-label="Search"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a><a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a><a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a><a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a><a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a><a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a><a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a><a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a><a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a><a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a><a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a><a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main"><div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> Object Types</div>
+<h1>Object Types</h1>
+<p class="lead">
+  Complete documentation of all 45 object types in the ObjectTypes enum, including their
+  BLP game type IDs, which game each type appears in, and a description of what each
+  object does in-game.
+</p>
+
+<div class="callout dev">
+  <div class="callout-title">✓ Verified from sblv.js and .tiled-project files</div>
+  Enum indices and BLP type IDs are from <code>itemTypesArray</code> in both versions of <code>sblv.js</code>.
+  Type names are from the <code>ObjectTypes</code> enum in the <code>.tiled-project</code> files.
+</div>
+
+<h2>How Object Types Work</h2>
+<p>
+  The <code>type</code> property of a Tiled object holds an ObjectTypes enum value.
+  Internally, the enum is a list of names mapped to integer indices (0–44).
+  When sblv.js writes the BLP file, it uses <code>itemTypesArray[enumIndex]</code>
+  to convert the enum index to the BLP game type ID stored in the file.
+</p>
+<p>
+  The <code>itemTypesArray</code> (identical in SB1 and SB2 for the shared types):
+</p>
+<pre>const itemTypesArray = [
+  // idx 0–16:
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+  // idx 17–20 (note: BLP ID 18 skipped):
+  19, 20, 21,
+  // idx 20–30 (note: BLP IDs 22, 23 skipped):
+  24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+  // idx 30–33 (SB1 ends here):
+  34, 40, 44, 46,
+  // idx 34–40 (SB2 only):
+  47, 49, 50, 51, 54, 55, 96,
+  // idx 41–44 (player starts, both games):
+  200, 201, 202, 203
+];</pre>
+
+<h2>Complete Object Types Table</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Enum Index</th>
+      <th>BLP Type ID</th>
+      <th>Name</th>
+      <th>SB1</th>
+      <th>SB2</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>1</td><td>Blupi (player)</td><td>✓</td><td>✓</td><td>The player character. Use the Player Start tileset objects (type IDs 200–203) for spawn points instead.</td></tr>
+    <tr><td>1</td><td>2</td><td>Robot (enemy)</td><td>✓</td><td>✓</td><td>Basic enemy robot that patrols between two positions.</td></tr>
+    <tr><td>2</td><td>3</td><td>Spider</td><td>✓</td><td>✓</td><td>Enemy that drops from the ceiling or moves along surfaces.</td></tr>
+    <tr><td>3</td><td>4</td><td>Virus</td><td>✓</td><td>✓</td><td>Enemy virus entity that moves toward the player.</td></tr>
+    <tr><td>4</td><td>5</td><td>Trash</td><td>✓</td><td>✓</td><td>Hazard or obstacle object.</td></tr>
+    <tr><td>5</td><td>6</td><td>Teleporter</td><td>✓</td><td>✓</td><td>Teleports the player to the endpoint location when touched.</td></tr>
+    <tr><td>6</td><td>7</td><td>Key</td><td>✓</td><td>✓</td><td>Collectible key that unlocks corresponding locks.</td></tr>
+    <tr><td>7</td><td>8</td><td>Lock</td><td>✓</td><td>✓</td><td>Locked barrier that opens when the player collects the matching key.</td></tr>
+    <tr><td>8</td><td>9</td><td>Bomb</td><td>✓</td><td>✓</td><td>Explosive that the player can pick up and throw or trigger.</td></tr>
+    <tr><td>9</td><td>10</td><td>Dynamite</td><td>✓</td><td>✓</td><td>Another explosive type, may behave differently from Bomb.</td></tr>
+    <tr><td>10</td><td>11</td><td>Spring</td><td>✓</td><td>✓</td><td>Launches the player upward when stepped on.</td></tr>
+    <tr><td>11</td><td>12</td><td>Lift</td><td>✓</td><td>✓</td><td>Moving platform (elevator). Uses endpoint and timing properties for motion.</td></tr>
+    <tr><td>12</td><td>13</td><td>Conveyor</td><td>✓</td><td>✓</td><td>Moving belt that pushes the player in a direction. Uses endpoint for direction.</td></tr>
+    <tr><td>13</td><td>14</td><td>Dispenser</td><td>✓</td><td>✓</td><td>Spawns or fires projectiles or items at intervals.</td></tr>
+    <tr><td>14</td><td>15</td><td>Shield</td><td>✓</td><td>✓</td><td>Power-up that grants the player temporary invincibility.</td></tr>
+    <tr><td>15</td><td>16</td><td>Skull</td><td>✓</td><td>✓</td><td>Hazard that kills or damages the player on contact.</td></tr>
+    <tr><td>16</td><td>17</td><td>Extra life</td><td>✓</td><td>✓</td><td>Collectible that grants an additional life.</td></tr>
+    <tr><td>17</td><td>19</td><td>Jeep</td><td>✓</td><td>✓</td><td>Vehicle the player can ride for faster movement. (BLP ID 18 is skipped.)</td></tr>
+    <tr><td>18</td><td>20</td><td>Helicopter</td><td>✓</td><td>✓</td><td>Flying vehicle the player can board for aerial movement.</td></tr>
+    <tr><td>19</td><td>21</td><td>Arrow</td><td>✓</td><td>✓</td><td>Directional indicator or projectile.</td></tr>
+    <tr><td>20</td><td>24</td><td>Platform</td><td>✓</td><td>✓</td><td>Moving platform that oscillates between spawn and endpoint. (BLP IDs 22, 23 are skipped.)</td></tr>
+    <tr><td>21</td><td>25</td><td>Coin</td><td>✓</td><td>✓</td><td>Collectible coin. Collecting all coins may be required to complete the level.</td></tr>
+    <tr><td>22</td><td>26</td><td>Flag</td><td>✓</td><td>✓</td><td>Goal marker or checkpoint.</td></tr>
+    <tr><td>23</td><td>27</td><td>Armour</td><td>✓</td><td>✓</td><td>Power-up that provides damage protection.</td></tr>
+    <tr><td>24</td><td>28</td><td>Balloon</td><td>✓</td><td>✓</td><td>Floating object the player can ride or interact with.</td></tr>
+    <tr><td>25</td><td>29</td><td>Flowers</td><td>✓</td><td>✓</td><td>Decorative or collectible plant object.</td></tr>
+    <tr><td>26</td><td>30</td><td>Jack-in-box</td><td>✓</td><td>✓</td><td>Surprise enemy or object that pops up when triggered.</td></tr>
+    <tr><td>27</td><td>31</td><td>Trampoline</td><td>✓</td><td>✓</td><td>Bouncy surface that launches the player to higher platforms.</td></tr>
+    <tr><td>28</td><td>32</td><td>Detector</td><td>✓</td><td>✓</td><td>Sensor that triggers an action when the player is nearby.</td></tr>
+    <tr><td>29</td><td>33</td><td>Shovel</td><td>✓</td><td>✓</td><td>Tool the player can collect and use to dig or destroy blocks.</td></tr>
+    <tr><td>30</td><td>34</td><td>Periscope</td><td>✓</td><td>✓</td><td>Observation object or hazard.</td></tr>
+    <tr><td>31</td><td>40</td><td>Rotor</td><td>✓</td><td>✓</td><td>Rotating blade or fan hazard.</td></tr>
+    <tr><td>32</td><td>44</td><td>Skate</td><td>✓</td><td>✓</td><td>Collectible skates that enable faster or special movement.</td></tr>
+    <tr><td>33</td><td>46</td><td>Switch</td><td>✓</td><td>✓</td><td>Trigger that activates linked doors, platforms, or other mechanisms.</td></tr>
+    <tr><td>34</td><td>47</td><td>Door</td><td>—</td><td>✓</td><td><em>Speedy Blupi II only.</em> Door that opens/closes, linked to a switch.</td></tr>
+    <tr><td>35</td><td>49</td><td>Boat</td><td>—</td><td>✓</td><td><em>SB2 only.</em> Watercraft the player can ride.</td></tr>
+    <tr><td>36</td><td>50</td><td>Submarine</td><td>—</td><td>✓</td><td><em>SB2 only.</em> Underwater vehicle.</td></tr>
+    <tr><td>37</td><td>51</td><td>Rocket</td><td>—</td><td>✓</td><td><em>SB2 only.</em> Rocket vehicle or projectile.</td></tr>
+    <tr><td>38</td><td>54</td><td>Electric</td><td>—</td><td>✓</td><td><em>SB2 only.</em> Electrical hazard or barrier.</td></tr>
+    <tr><td>39</td><td>55</td><td>Virus 2</td><td>—</td><td>✓</td><td><em>SB2 only.</em> Variant virus enemy type.</td></tr>
+    <tr><td>40</td><td>96</td><td>Detonator</td><td>—</td><td>✓</td><td><em>SB2 only.</em> Remote detonator for explosives.</td></tr>
+    <tr><td>41</td><td>200</td><td>Player 1 Start</td><td>✓</td><td>✓</td><td>Spawn point for player 1. Uses tile 0 from Player Start.tsx.</td></tr>
+    <tr><td>42</td><td>201</td><td>Player 2 Start</td><td>✓</td><td>✓</td><td>Spawn point for player 2. Uses tile 1 from Player Start.tsx.</td></tr>
+    <tr><td>43</td><td>202</td><td>Player 3 Start</td><td>✓</td><td>✓</td><td>Spawn point for player 3. Uses tile 2 (hflip) from Player Start.tsx.</td></tr>
+    <tr><td>44</td><td>203</td><td>Player 4 Start</td><td>✓</td><td>✓</td><td>Spawn point for player 4. Uses tile 3 (hflip) from Player Start.tsx.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout note">
+  <div class="callout-title">Note — in-game descriptions</div>
+  Object behavior descriptions above are based on their names and standard platform-game conventions.
+  Exact in-game behavior may differ from these descriptions.
+  The BLP format does not store behavior data — that is hard-coded in the game executable.
+</div>
+
+<h2>SB1 vs SB2 Object Type Differences</h2>
+<p>
+  The SB1 extension (<code>sblv.js</code>) has 34 entries in <code>itemTypesArray</code> (indices 0–33).
+  The SB2 extension has 44 entries (indices 0–43, with player starts at 41–44).
+  The 10 extra SB2 types (indices 34–40) correspond to the "(II)" items in the SB1 project file —
+  they are listed there for reference but produce no effect in SB1 since their BLP type IDs
+  are not handled by the SB1 write function.
+</p>
+<p>
+  The SB1 <code>.tiled-project</code> lists all 45 types including sequel-only ones (marked with "(II)"),
+  so the enum is the same length in both projects. However, using a sequel-only type in an SB1 level
+  will result in an undefined BLP type ID being written to the file.
+</p>
+
+<div class="page-nav"><a href="object-properties.html">← Object Properties</a>
+  <a class="nav-next" href="tilesets.html">Tilesets →</a></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div></div>
+<script src="assets/script.js"></script>
+</body></html>

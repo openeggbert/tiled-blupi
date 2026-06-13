@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial 2 — Open a Level — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Tutorials</a> › Tutorial 2: Open a Level</nav>
+<h1>Tutorial 2: Open a Level</h1>
+<p>In this tutorial you will open Tiled, load the correct project file, open a level file, and understand what you see on screen. After this tutorial you will know the layout of the Tiled interface when working with Speedy Blupi levels.</p>
+
+<div class="callout callout-info">
+<strong>Prerequisite:</strong> Complete <a href="install-into-game-folder.html">Tutorial 1</a> first. The tiled-blupi project folder must already be in your game directory.
+</div>
+
+<h2>Step 1: Launch Tiled</h2>
+<p>Start the Tiled map editor. On first launch you may see the "Recent Projects" welcome screen or an empty workspace. Either is fine.</p>
+
+<h2>Step 2: Open the Tiled Project File</h2>
+<p>You must open the <code>.tiled-project</code> file before opening any level. The project file tells Tiled where to find the extensions and tilesets.</p>
+<ol>
+<li>In Tiled, choose <strong>File → Open File or Project…</strong> (keyboard shortcut: <kbd>Ctrl+O</kbd> on Windows/Linux, <kbd>⌘O</kbd> on macOS).</li>
+<li>Navigate to the game directory where you copied the project folder.</li>
+<li>Open the subfolder — e.g., <code>speedy-blupi-1/</code>.</li>
+<li>Select the file <code>speedy-blupi-1.tiled-project</code> and click <strong>Open</strong>.</li>
+</ol>
+<div class="callout callout-warning">
+<strong>Do not skip this step.</strong> If you open a <code>.blp</code> file before loading the project, Tiled will not know about the sblv scripted format, and it will either reject the file or open it incorrectly as binary data.
+</div>
+<p>After opening the project, the <strong>Project panel</strong> in Tiled should show the project folder tree. You should also see a notification or no error in the status bar. If Tiled shows a warning about a missing extension, revisit Tutorial 1 to make sure <code>sblv.js</code> is in the right location.</p>
+
+<h2>Step 3: Locate the Level Files</h2>
+<p>The level files (<code>.blp</code> files) are stored in the game's <code>level/</code> directory, which is <em>outside</em> the tiled-blupi project subfolder. From the game root:</p>
+<pre><code>Speedy Blupi/
+├── level/
+│   ├── blp1001.blp     ← SB1 level 1
+│   ├── blp1002.blp     ← SB1 level 2
+│   │   …
+│   └── blp1025.blp     ← SB1 level 25
+└── speedy-blupi-1/     ← project folder</code></pre>
+<p>For SB2 the naming scheme is the same but the files are <code>blp2001.blp</code> through <code>blp2030.blp</code> (30 levels).</p>
+
+<h2>Step 4: Open a Level File</h2>
+<ol>
+<li>In Tiled choose <strong>File → Open File or Project…</strong> again.</li>
+<li>Navigate to the game's <code>level/</code> directory.</li>
+<li>Select <code>blp1001.blp</code> (or any other level file) and click <strong>Open</strong>.</li>
+</ol>
+<p>Tiled will call the sblv.js extension to read the file. This may take 1–2 seconds. When it finishes, you will see the map open in the main canvas.</p>
+<div class="callout callout-info">
+<strong>File chooser tip:</strong> By default the file chooser may only show <code>.tmx</code> files. Use the file-type dropdown (usually labeled "All Files" or "Tiled Files") and select <em>All Files (*)</em> to make <code>.blp</code> files visible.
+</div>
+
+<h2>Step 5: Understand What You See</h2>
+<p>When a level opens, Tiled shows the following areas:</p>
+<table>
+<thead><tr><th>Tiled Area</th><th>What It Shows for a .blp Level</th></tr></thead>
+<tbody>
+<tr><td><strong>Canvas (center)</strong></td><td>The 100×100 tile map. Each cell is one game tile (32×32 pixels in the display, though the actual grid size may vary by tileset).</td></tr>
+<tr><td><strong>Layers panel</strong> (top-right by default)</td><td>Four layers: <em>Background</em>, <em>Foreground</em>, <em>Decoration</em>, <em>Objects</em>. The extension creates all four when reading a .blp file.</td></tr>
+<tr><td><strong>Tilesets panel</strong> (bottom-right)</td><td>All tilesets referenced in the project: element, explo, object, player-start, object-types, and blupi000/blupi001/blupi002/blupi003.</td></tr>
+<tr><td><strong>Properties panel</strong> (usually bottom-left)</td><td>The map's custom properties (background, sounds, etc.) when no tile or object is selected. When an object is selected, its properties appear here instead.</td></tr>
+<tr><td><strong>Toolbar</strong></td><td>Painting tools: Stamp Brush (B), Eraser (E), Terrain Brush (T), Fill (F), Select (S, R).</td></tr>
+</tbody>
+</table>
+
+<h2>Step 6: Check That All Layers Are Present</h2>
+<p>Click the <strong>Layers</strong> panel. You should see exactly four layers listed from top to bottom:</p>
+<ol>
+<li><strong>Objects</strong> — the object layer containing game entities</li>
+<li><strong>Decoration</strong> — decorative tile layer (explo tileset)</li>
+<li><strong>Foreground</strong> — main terrain tile layer (element tileset)</li>
+<li><strong>Background</strong> — a solid color or image layer (not editable as tiles)</li>
+</ol>
+<div class="callout callout-warning">
+<strong>If layers are missing:</strong> The extension did not run correctly. Check that the project is open (Step 2) and that <code>sblv.js</code> is in <code>extensions/</code>. Restart Tiled after fixing the problem, then try opening the level again.
+</div>
+
+<h2>Step 7: Navigate the Canvas</h2>
+<p>Use these Tiled navigation controls to move around the 100×100 map:</p>
+<table>
+<thead><tr><th>Action</th><th>How</th></tr></thead>
+<tbody>
+<tr><td>Pan</td><td>Middle-mouse drag, or hold <kbd>Space</kbd> and drag</td></tr>
+<tr><td>Zoom in/out</td><td>Mouse wheel, or <kbd>Ctrl++</kbd> / <kbd>Ctrl+-</kbd></td></tr>
+<tr><td>Fit map in window</td><td><kbd>Ctrl+Shift+H</kbd></td></tr>
+<tr><td>Jump to tile (0,0)</td><td>Press <kbd>Home</kbd></td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-success">
+<strong>Done!</strong> You have successfully opened a level. Next: <a href="edit-map-properties.html">Tutorial 3: Edit Map Properties</a>.
+</div>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>

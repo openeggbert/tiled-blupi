@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Structure — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="">
+    <input type="search" placeholder="Search docs…" aria-label="Search">
+  </form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a>
+  <a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a>
+  <a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a>
+  <a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a>
+  <a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a>
+  <a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a>
+  <a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a>
+  <a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a>
+  <a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a>
+  <a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a>
+  <a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a>
+  <a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main">
+<div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> Project Structure</div>
+<h1>Project Structure</h1>
+<p class="lead">
+  A complete annotated map of the tiled-blupi repository, explaining the purpose of every file
+  and directory.
+</p>
+
+<h2>Top-Level Layout</h2>
+<pre>tiled-blupi/
+├── README.md
+├── Speedy Blupi/
+│   └── tiled/
+└── Speedy Blupi II/
+    └── tiled/</pre>
+<p>
+  The repository root contains only the <code>README.md</code> file and two game-specific subdirectories.
+  Each subdirectory contains a single <code>tiled/</code> folder that is designed to be copied
+  into the corresponding game installation directory.
+</p>
+
+<h2>README.md</h2>
+<p>
+  The primary human-readable documentation for the project. It covers:
+</p>
+<ul>
+  <li>Installation instructions (copy the tiled folder into the game directory).</li>
+  <li>Level file naming conventions (<code>WORLD###.BLP</code>, <code>u###-###.blp</code>).</li>
+  <li>Description of all four Tiled layers.</li>
+  <li>All map properties with BLP byte offsets.</li>
+  <li>Object properties list.</li>
+  <li>Links to the Tiled editor and Blupi games.</li>
+</ul>
+
+<h2>Speedy Blupi/tiled/ (and Speedy Blupi II/tiled/)</h2>
+<p>Both game directories have the same structure. The differences between SB1 and SB2 are
+in the content of the files (different tile counts, different object types), not in the folder layout.</p>
+
+<pre>tiled/
+├── speedyblupi.tiled-project        ← (or speedyblupi2.tiled-project for SB2)
+├── extensions/
+│   └── sblv.js
+└── tilesets/
+    ├── object.tsx
+    ├── element.tsx
+    ├── explo.tsx
+    ├── blupi000.tsx
+    ├── blupi001.tsx
+    ├── blupi002.tsx
+    ├── blupi003.tsx
+    ├── Player Start.tsx
+    ├── Object Types.tsx
+    ├── object/           ← PNG images for object tileset
+    ├── element/          ← PNG images for element tileset
+    ├── explo/            ← PNG images for explo tileset
+    ├── blupi000/         ← PNG images for blupi000 tileset
+    ├── blupi001/
+    ├── blupi002/
+    ├── blupi003/
+    ├── Player Start/
+    └── Object Types/</pre>
+
+<h2>The Project File (*.tiled-project)</h2>
+<p>
+  A JSON file that configures the Tiled editor for this project. Key fields:
+</p>
+<ul>
+  <li><code>"extensionsPath": "extensions"</code> — tells Tiled to load all <code>.js</code> files from the <code>extensions/</code> subdirectory relative to the project file.</li>
+  <li><code>"folders": ["tilesets", "../DATA"]</code> — shows these two directories in the Project panel. <code>../DATA</code> is the game's DATA folder (one level up from <code>tiled/</code>).</li>
+  <li><code>"propertyTypes"</code> — defines the <em>Object</em> class (with all per-object BLP properties) and the <em>ObjectTypes</em> enum (45 values mapping enum names to integer indices).</li>
+</ul>
+
+<h2>extensions/sblv.js</h2>
+<p>
+  The core of the entire project. A single JavaScript file (~500 lines for SB1, ~550 for SB2)
+  that implements a Tiled scripted map format. When Tiled loads the project, it executes this file.
+  The file:
+</p>
+<ol>
+  <li>Declares <code>itemTypesArray</code> — a 34-entry (SB1) or 44-entry (SB2) array mapping enum indices to BLP type IDs.</li>
+  <li>Defines <code>sblvMapFormat</code> — an object with <code>name</code>, <code>extension</code>, <code>read()</code>, and <code>write()</code> methods.</li>
+  <li>Calls <code>tiled.registerMapFormat("sblv", sblvMapFormat)</code> (or <code>"sb2lv"</code> for SB2) to make the format available in Tiled.</li>
+</ol>
+<p>See <a href="extension/sblv-js-overview.html">sblv.js in Depth</a> for a full code walkthrough.</p>
+
+<h2>tilesets/*.tsx Files</h2>
+<p>XML files (Tiled Set XML format) describing each tileset. Key tilesets and their roles:</p>
+<table>
+  <thead>
+    <tr><th>File</th><th>Used for layer</th><th>SB1 tiles</th><th>SB2 tiles</th><th>Special attributes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>object.tsx</code></td><td>Foreground</td><td>246</td><td>441</td><td>None</td></tr>
+    <tr><td><code>element.tsx</code></td><td>Display only</td><td>187</td><td>289</td><td>None</td></tr>
+    <tr><td><code>explo.tsx</code></td><td>Decoration</td><td>54</td><td>100</td><td><code>tileoffset y="64"</code></td></tr>
+    <tr><td><code>blupi000–003.tsx</code></td><td>Display only</td><td>291 each</td><td>336 each</td><td>None</td></tr>
+    <tr><td><code>Player Start.tsx</code></td><td>Objects (player spawns)</td><td>4</td><td>4</td><td>class=Blupi, hflip on tiles 2–3</td></tr>
+    <tr><td><code>Object Types.tsx</code></td><td>Objects (game objects)</td><td>34</td><td>44</td><td>tile 0 class=Endpoint</td></tr>
+  </tbody>
+</table>
+
+<h2>tilesets/&lt;name&gt;/ PNG Directories</h2>
+<p>
+  Each tileset has a corresponding subdirectory of PNG images named <code>0.png</code>, <code>1.png</code>, …, <code>N.png</code>
+  where N = tile count − 1. Every image is 64×64 pixels with an alpha channel.
+  These images were extracted from the game and are used as visual references in the Tiled canvas.
+</p>
+<table>
+  <thead><tr><th>Directory</th><th>SB1 file count</th><th>SB2 file count</th></tr></thead>
+  <tbody>
+    <tr><td><code>object/</code></td><td>246</td><td>441</td></tr>
+    <tr><td><code>element/</code></td><td>187</td><td>289</td></tr>
+    <tr><td><code>explo/</code></td><td>54</td><td>100</td></tr>
+    <tr><td><code>blupi000/</code> through <code>blupi003/</code></td><td>291 each</td><td>336 each</td></tr>
+    <tr><td><code>Player Start/</code></td><td>4</td><td>4</td></tr>
+    <tr><td><code>Object Types/</code></td><td>34</td><td>44</td></tr>
+  </tbody>
+</table>
+
+<h2>How the Paths Connect</h2>
+<p>
+  When the game installation contains the <code>tiled/</code> folder:
+</p>
+<pre>Game/
+├── tiled/
+│   ├── speedyblupi.tiled-project   → extensionsPath = "extensions"
+│   │                                 folders = ["tilesets", "../DATA"]
+│   ├── extensions/sblv.js           ← loaded by project file
+│   └── tilesets/object.tsx         → source="object/0.png" (relative to tsx)
+└── DATA/WORLD001.BLP               ← "../DATA" from tiled-project perspective</pre>
+<p>
+  All paths in TSX files are relative to the TSX file's own location.
+  All paths in the project file are relative to the project file's location.
+  This means the entire <code>tiled/</code> folder is self-contained and portable.
+</p>
+
+<div class="page-nav"><a href="using-tiled.html">← Using Tiled</a>
+  <a class="nav-next" href="supported-games.html">Supported Games →</a></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

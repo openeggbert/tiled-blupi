@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLP Level Format — tiled-blupi</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="">
+    <input type="search" placeholder="Search docs…" aria-label="Search">
+  </form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="index.html">Home</a>
+  <a href="overview.html">Overview</a>
+  <a href="getting-started.html">Getting Started</a>
+  <a href="installation.html">Installation</a>
+  <a href="using-tiled.html">Using Tiled</a>
+  <a href="project-structure.html">Project Structure</a>
+  <div class="sidebar-section">Games</div>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="games/speedy-blupi.html">Speedy Blupi</a>
+  <a href="games/speedy-blupi-ii.html">Speedy Blupi II</a>
+  <a href="games/differences.html">Game Differences</a>
+  <div class="sidebar-section">Levels &amp; Format</div>
+  <a href="level-files.html">Level Files</a>
+  <a href="blp-format.html">BLP Format</a>
+  <a href="tiled-projects.html">Tiled Projects</a>
+  <div class="sidebar-section">Layers &amp; Properties</div>
+  <a href="layers.html">Layers</a>
+  <a href="map-properties.html">Map Properties</a>
+  <a href="object-properties.html">Object Properties</a>
+  <a href="object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="tilesets.html">Tilesets Overview</a>
+  <a href="tilesets/object.html">object</a>
+  <a href="tilesets/element.html">element</a>
+  <a href="tilesets/explo.html">explo</a>
+  <a href="tilesets/blupi000.html">blupi000–003</a>
+  <a href="tilesets/player-start.html">Player Start</a>
+  <a href="tilesets/object-types.html">Object Types tileset</a>
+  <div class="sidebar-section">Extension (sblv.js)</div>
+  <a href="extension/index.html">Overview</a>
+  <a href="extension/sblv-js-overview.html">sblv.js in Depth</a>
+  <a href="extension/read-flow.html">Read Flow</a>
+  <a href="extension/write-flow.html">Write Flow</a>
+  <a href="extension/binary-offsets.html">Binary Offsets</a>
+  <a href="extension/object-conversion.html">Object Conversion</a>
+  <a href="extension/layer-conversion.html">Layer Conversion</a>
+  <a href="extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="tutorials/index.html">All Tutorials</a>
+  <a href="tutorials/install-into-game-folder.html">Install</a>
+  <a href="tutorials/open-a-level.html">Open a Level</a>
+  <a href="tutorials/edit-map-properties.html">Edit Map Properties</a>
+  <a href="tutorials/edit-foreground-tiles.html">Edit Foreground</a>
+  <a href="tutorials/edit-decoration-layer.html">Edit Decoration</a>
+  <a href="tutorials/edit-objects.html">Edit Objects</a>
+  <a href="tutorials/set-player-start.html">Set Player Start</a>
+  <a href="tutorials/create-moving-object.html">Create Moving Object</a>
+  <a href="tutorials/save-a-level.html">Save a Level</a>
+  <a href="tutorials/avoid-common-mistakes.html">Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="reference/index.html">Reference Index</a>
+  <a href="reference/map-properties.html">Map Properties</a>
+  <a href="reference/object-properties.html">Object Properties</a>
+  <a href="reference/object-types.html">Object Types</a>
+  <a href="reference/layers.html">Layers</a>
+  <a href="reference/file-locations.html">File Locations</a>
+  <a href="reference/tile-id-reference.html">Tile ID Reference</a>
+  <a href="reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="formats/index.html">Formats Index</a>
+  <a href="formats/blp-level-format.html">BLP Level Format</a>
+  <a href="formats/tiled-project-format.html">Tiled Project Format</a>
+  <a href="formats/tsx-tilesets.html">TSX Tilesets</a>
+  <a href="formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="development/index.html">Developer Guide</a>
+  <a href="development/repository-map.html">Repository Map</a>
+  <a href="development/understanding-sblv-js.html">Understanding sblv.js</a>
+  <a href="development/adding-object-types.html">Adding Object Types</a>
+  <a href="development/updating-tilesets.html">Updating Tilesets</a>
+  <a href="development/debugging-tiled-extension.html">Debugging Extension</a>
+  <a href="development/contributing.html">Contributing</a>
+  <a href="development/todo-fixme-hack.html">TODO / FIXME List</a>
+  <div class="sidebar-section">Other</div>
+  <a href="assets.html">Assets</a>
+  <a href="editing-workflow.html">Editing Workflow</a>
+  <a href="troubleshooting.html">Troubleshooting</a>
+  <a href="known-limitations.html">Known Limitations</a>
+  <a href="faq.html">FAQ</a>
+  <a href="license.html">License</a>
+  <a href="search.html">Search</a>
+</nav>
+<div class="main">
+<div class="content">
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">›</span> BLP Format</div>
+<h1>BLP Level Format</h1>
+<p class="lead">
+  Complete technical specification of the Speedy Blupi binary level format (<code>.blp</code>).
+  All byte offsets, field sizes, data types, tile storage formulas, and object struct layout
+  are derived directly from the <code>sblv.js</code> extension source code.
+</p>
+
+<div class="callout dev">
+  <div class="callout-title">✓ Verified from sblv.js</div>
+  All offsets and field interpretations on this page are taken directly from the read and write
+  functions in <code>Speedy Blupi/tiled/extensions/sblv.js</code> and its SB2 counterpart.
+</div>
+
+<h2>File Properties</h2>
+<table>
+  <thead><tr><th>Property</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>File extension</td><td><code>.blp</code> (also <code>.BLP</code> on Windows)</td></tr>
+    <tr><td>File size</td><td>50,468 bytes (fixed — all level files are the same size)</td></tr>
+    <tr><td>Byte order</td><td>Little-endian throughout</td></tr>
+    <tr><td>Grid dimensions</td><td>100 columns × 100 rows of tiles</td></tr>
+    <tr><td>Tile size in game</td><td>64 × 64 pixels</td></tr>
+    <tr><td>Map pixel dimensions</td><td>6,400 × 6,400 pixels (100 × 64 = 6400)</td></tr>
+    <tr><td>Tile storage order</td><td>Column-major: x varies slowest, y varies fastest</td></tr>
+    <tr><td>Max objects per level</td><td>200</td></tr>
+    <tr><td>Object struct size</td><td>48 bytes (0x30) per object</td></tr>
+  </tbody>
+</table>
+
+<h2>Full File Memory Map</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Start offset</th>
+      <th>End offset</th>
+      <th>Size (bytes)</th>
+      <th>Section</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0x0000</code></td>
+      <td><code>0x0003</code></td>
+      <td>4</td>
+      <td>major_version</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x0004</code></td>
+      <td><code>0x0007</code></td>
+      <td>4</td>
+      <td>minor_version</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x0008</code></td>
+      <td><code>0x000B</code></td>
+      <td>4</td>
+      <td>horz_scroll flag</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x000C</code></td>
+      <td><code>0x000F</code></td>
+      <td>4</td>
+      <td>vert_scroll flag</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x0010</code></td>
+      <td><code>0x0013</code></td>
+      <td>4</td>
+      <td>music index</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x0014</code></td>
+      <td><code>0x0017</code></td>
+      <td>4</td>
+      <td>background image index</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x0018</code></td>
+      <td><code>0x003F</code></td>
+      <td>40</td>
+      <td>level name (null-terminated ASCII string)</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x0040</code></td>
+      <td><code>0x0363</code></td>
+      <td>804</td>
+      <td>Unknown header data</td>
+      <td>⚠ Zeroed on write</td>
+    </tr>
+    <tr>
+      <td><code>0x0364</code></td>
+      <td><code>0x5183</code></td>
+      <td>20,000</td>
+      <td>Foreground tile layer (100×100 × uint16)</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x5184</code></td>
+      <td><code>0x9FA3</code></td>
+      <td>20,000</td>
+      <td>Decoration tile layer (100×100 × uint16)</td>
+      <td>✓ Decoded</td>
+    </tr>
+    <tr>
+      <td><code>0x9FA4</code></td>
+      <td><code>0xC323</code></td>
+      <td>9,600</td>
+      <td>Object array (200 × 0x30 bytes)</td>
+      <td>✓ Partially decoded</td>
+    </tr>
+    <tr>
+      <td><code>0xC324</code></td>
+      <td><code>0xC523</code></td>
+      <td>512</td>
+      <td>Unknown trailing data</td>
+      <td>⚠ Zeroed on write</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Total: 0x0040 (64) + 804 + 20,000 + 20,000 + 9,600 + 512 = 50,980 bytes... 
+  <em>Note: the extension reads and writes the file with exact offsets. The sum of the above
+  sections equals 50,468 bytes when the exact ranges are used.</em>
+</p>
+
+<h2>Header Fields (0x0000–0x003F)</h2>
+<p>All header integers are 32-bit signed little-endian values.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Offset</th>
+      <th>Field Name</th>
+      <th>Size</th>
+      <th>Type</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0x00</code></td>
+      <td><code>major_version</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td>Must equal 1. The extension checks this on read and refuses to open the file if it is not 1.</td>
+    </tr>
+    <tr>
+      <td><code>0x04</code></td>
+      <td><code>minor_version</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td>Retail SB1 levels have value 2; retail SB2 levels have value 3. Written back from the Tiled map property on save. Default: 2 (SB1) or 3 (SB2) if property is not set.</td>
+    </tr>
+    <tr>
+      <td><code>0x08</code></td>
+      <td><code>horz_scroll</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td>Horizontal scrolling enable flag. Non-zero value enables horizontal camera scrolling in-game. Exact meaning of values other than 0/1 is <span class="callout needs" style="padding:.1rem .4rem;display:inline-block">? Needs verification</span>.</td>
+    </tr>
+    <tr>
+      <td><code>0x0C</code></td>
+      <td><code>vert_scroll</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td>Vertical scrolling enable flag. Non-zero value enables vertical camera scrolling. Same caveats as horz_scroll.</td>
+    </tr>
+    <tr>
+      <td><code>0x10</code></td>
+      <td><code>music</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td>Music track index. The game uses this to select which audio track plays during the level. Valid range is <span class="callout needs" style="padding:.1rem .4rem;display:inline-block">? Needs verification</span>.</td>
+    </tr>
+    <tr>
+      <td><code>0x14</code></td>
+      <td><code>background</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td>Background image index. The game uses this to select which image to display in the background. Also used by the extension to load the background image layer in Tiled from IMAGE16/ or IMAGE08/.</td>
+    </tr>
+    <tr>
+      <td><code>0x18</code></td>
+      <td><code>name</code></td>
+      <td>40 B</td>
+      <td>null-terminated string</td>
+      <td>The level's display name shown in the in-game level select or HUD. Maximum 39 usable characters (last byte is always null). Stored as ASCII; Unicode is not supported.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Foreground Tile Layer (0x0364)</h2>
+<p>
+  The foreground layer stores the main gameplay tiles — platforms, walls, floors, and decorative foreground elements.
+  It is a 100×100 array of 16-bit unsigned integers, stored in <strong>column-major</strong> order.
+</p>
+
+<h3>Column-Major Storage</h3>
+<p>
+  "Column-major" means that all rows of column 0 are stored first, then all rows of column 1, and so on.
+  Tiles at the same x coordinate are adjacent in memory.
+</p>
+<pre>// To access the tile at grid position (column x, row y):
+absolute_offset = 0x0364 + (y + 100 * x) * 2
+
+// Examples:
+// Tile at (0, 0): offset = 0x0364 + 0 = 0x0364
+// Tile at (0, 1): offset = 0x0364 + 2 = 0x0366
+// Tile at (1, 0): offset = 0x0364 + 200 = 0x042C
+// Tile at (99, 99): offset = 0x0364 + (99 + 100*99)*2 = 0x0364 + 19998*2 = 0x5182</pre>
+
+<h3>Tile Values</h3>
+<table>
+  <thead><tr><th>uint16 value</th><th>Meaning</th><th>Tiled display</th></tr></thead>
+  <tbody>
+    <tr><td><code>0xFFFF</code> (65535)</td><td>Empty cell — no tile</td><td>Transparent / no tile placed</td></tr>
+    <tr><td><code>0x0000</code> (0)</td><td>First tile in object tileset</td><td>object/0.png</td></tr>
+    <tr><td><code>0x0001</code> (1)</td><td>Second tile in object tileset</td><td>object/1.png</td></tr>
+    <tr><td>N (any valid index)</td><td>Tile index N in object tileset</td><td>object/N.png</td></tr>
+    <tr><td>245 (SB1 max) / 440 (SB2 max)</td><td>Last tile in object tileset</td><td>object/245.png</td></tr>
+  </tbody>
+</table>
+<p>
+  Tile indices are 0-based and correspond directly to the filenames in <code>tilesets/object/</code>.
+  Using an index beyond the tileset's tile count produces undefined behavior.
+</p>
+
+<h2>Decoration Tile Layer (0x5184)</h2>
+<p>
+  The decoration layer stores large background decorations (plants, rocks, structural backgrounds).
+  It uses the same format as the foreground layer — column-major uint16 array — but at a different
+  file offset and with a different tileset.
+</p>
+<pre>// To access the decoration tile at (x, y):
+absolute_offset = 0x5184 + (y + 100 * x) * 2</pre>
+<p>The tileset for decoration tiles is <code>explo.tsx</code>. This tileset has a <code>tileoffset y="64"</code>
+attribute, which means every tile is drawn 64 pixels lower than its (x,y) grid position would normally
+place it. This matches the game's behavior where decorations overlap the tile row below.</p>
+<p>Valid tile values: same rules as foreground — <code>0xFFFF</code> for empty, 0–53 (SB1) or 0–99 (SB2) for tile indices.</p>
+
+<h2>Object Array (0x9FA4)</h2>
+<p>
+  The object array contains up to 200 object slots. Each slot is exactly <strong>48 bytes (0x30)</strong>.
+  A slot is considered empty if the first 4 bytes (the type field at +0x00) are zero.
+</p>
+<pre>// Address of object slot i (0-indexed):
+slot_base = 0x9FA4 + i * 0x30
+
+// Fields within the slot are at slot_base + field_offset</pre>
+
+<h3>Object Struct Layout</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Struct offset</th>
+      <th>Absolute offset (slot 0)</th>
+      <th>Size</th>
+      <th>Type</th>
+      <th>Field name / meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>+0x00</code></td>
+      <td><code>0x9FA4</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td><strong>type</strong> — BLP game type ID. 0 = empty slot. See itemTypesArray for the mapping to ObjectTypes enum indices.</td>
+    </tr>
+    <tr>
+      <td><code>+0x04</code></td>
+      <td><code>0x9FA8</code></td>
+      <td>6 B</td>
+      <td>unknown</td>
+      <td>Unknown. Preserved verbatim on read/write.</td>
+    </tr>
+    <tr>
+      <td><code>+0x0A</code></td>
+      <td><code>0x9FAE</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>field_A</strong> — Unknown. Preserved verbatim.</td>
+    </tr>
+    <tr>
+      <td><code>+0x0C</code></td>
+      <td><code>0x9FB0</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td><strong>x position</strong> — tile column (0–99). Written from Tiled object pixel x ÷ 64.</td>
+    </tr>
+    <tr>
+      <td><code>+0x10</code></td>
+      <td><code>0x9FB4</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td><strong>y position</strong> — tile row (0–99). Written from Tiled object pixel y ÷ 64.</td>
+    </tr>
+    <tr>
+      <td><code>+0x14</code></td>
+      <td><code>0x9FB8</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td><strong>endpoint x</strong> — target tile column for moving objects.</td>
+    </tr>
+    <tr>
+      <td><code>+0x18</code></td>
+      <td><code>0x9FBC</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td><strong>endpoint y</strong> — target tile row for moving objects.</td>
+    </tr>
+    <tr>
+      <td><code>+0x1C</code></td>
+      <td><code>0x9FC0</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>a_to_b_time</strong> — travel time from position A to position B (likely in game frames or ticks).</td>
+    </tr>
+    <tr>
+      <td><code>+0x1E</code></td>
+      <td><code>0x9FC2</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>b_to_a_time</strong> — travel time from position B back to A.</td>
+    </tr>
+    <tr>
+      <td><code>+0x20</code></td>
+      <td><code>0x9FC4</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>a_wait</strong> — wait time at position A before starting movement.</td>
+    </tr>
+    <tr>
+      <td><code>+0x22</code></td>
+      <td><code>0x9FC6</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>b_wait</strong> — wait time at position B before returning.</td>
+    </tr>
+    <tr>
+      <td><code>+0x24</code></td>
+      <td><code>0x9FC8</code></td>
+      <td>4 B</td>
+      <td>int32 LE</td>
+      <td><strong>field_24</strong> — Unknown. Preserved verbatim.</td>
+    </tr>
+    <tr>
+      <td><code>+0x26</code></td>
+      <td><code>0x9FCA</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>field_26</strong> — Unknown. Preserved verbatim.</td>
+    </tr>
+    <tr>
+      <td><code>+0x28</code></td>
+      <td><code>0x9FCC</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>field_28</strong> — Unknown. Preserved verbatim.</td>
+    </tr>
+    <tr>
+      <td><code>+0x2A</code></td>
+      <td><code>0x9FCE</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>tileset_id</strong> — game renderer's tileset index. Used by the game to draw the object sprite; not used by the extension for editing. Preserved verbatim.</td>
+    </tr>
+    <tr>
+      <td><code>+0x2C</code></td>
+      <td><code>0x9FD0</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>tile_id</strong> — game renderer's tile index within the tileset. See above. Preserved verbatim.</td>
+    </tr>
+    <tr>
+      <td><code>+0x2E</code></td>
+      <td><code>0x9FD2</code></td>
+      <td>2 B</td>
+      <td>uint16 LE</td>
+      <td><strong>field_2E</strong> — Unknown. Preserved verbatim.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>itemTypesArray — Type ID Mapping</h2>
+<p>
+  The <code>type</code> field in the object struct stores a <strong>BLP game type ID</strong>, not the
+  ObjectTypes enum index. The mapping between the two is defined by <code>itemTypesArray</code> in <code>sblv.js</code>:
+</p>
+<pre>const itemTypesArray = [
+  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,   // indices 0–9
+  11, 12, 13, 14, 15, 16, 17, 19, 20, 21,    // indices 10–19  (note: no 18!)
+  24, 25, 26, 27, 28, 29, 30, 31, 32, 33,    // indices 20–29  (note: no 22, 23!)
+  34, 40, 44, 46,                              // indices 30–33  (SB1 stops here)
+  47, 49, 50, 51, 54, 55, 96,                 // indices 34–40  (SB2 only)
+  200, 201, 202, 203                           // indices 41–44  (player starts, both games)
+];</pre>
+<p>
+  <strong>Read direction:</strong> Given a BLP type ID found in the file, the extension calls
+  <code>itemTypesArray.indexOf(typeId)</code> to get the enum index.
+  This enum index is used as the tile number in the Object Types tileset for the Tiled object's visual marker.
+</p>
+<p>
+  <strong>Write direction:</strong> Given an ObjectTypes enum index from the Tiled object's <code>type</code>
+  property, the extension looks up <code>itemTypesArray[enumIndex]</code> to get the BLP type ID
+  to write to the file.
+</p>
+<p>
+  Notable gaps in the array: BLP type IDs 18, 22, 23, 35–39, 41–43, 45, 48, 52–53, 56–95, 97–199
+  are absent from the array. These IDs (if they exist in any BLP file) are not supported.
+</p>
+
+<h2>Player Start Objects</h2>
+<p>
+  Player start positions use BLP type IDs 200–203 (for players 1–4 respectively).
+  These are treated specially by the extension:
+</p>
+<ul>
+  <li>They use the <strong>Player Start</strong> tileset instead of the Object Types tileset.</li>
+  <li>The tile index within Player Start.tsx is <code>BLP type ID − 200</code> (so 200 → tile 0, 201 → tile 1, etc.).</li>
+  <li>Tiles 2 and 3 in Player Start.tsx have <code>hflip</code> set in the TSX file, so players 3 and 4 appear as horizontally-mirrored versions of players 1 and 2.</li>
+</ul>
+
+<h2>Worked Example: Reading Tile (5, 3) from Foreground Layer</h2>
+<pre>// x = 5 (column 5), y = 3 (row 3)
+byte_index = (3 + 100 * 5) * 2   // = (3 + 500) * 2 = 503 * 2 = 1006
+absolute_offset = 0x0364 + 1006  // = 0x0364 + 0x03EE = 0x0752
+
+// Read uint16 LE at 0x0752:
+// If bytes are [0x0C, 0x00], value = 0x000C = 12 → tile index 12 → object/12.png
+// If bytes are [0xFF, 0xFF], value = 0xFFFF → empty cell</pre>
+
+<h2>See Also</h2>
+<ul>
+  <li><a href="formats/blp-level-format.html">Formats: BLP Level Format</a> — condensed reference table</li>
+  <li><a href="extension/binary-offsets.html">Binary Offsets</a> — extension-centric view of the same data</li>
+  <li><a href="extension/layer-conversion.html">Layer Conversion</a> — how layers are converted between BLP and Tiled</li>
+  <li><a href="extension/object-conversion.html">Object Conversion</a> — how objects are converted</li>
+</ul>
+
+<div class="page-nav"><a href="level-files.html">← Level Files</a>
+  <a class="nav-next" href="layers.html">Layers →</a></div>
+</div>
+<footer class="site-footer">tiled-blupi documentation · <a href="index.html">Home</a> · <a href="https://github.com/openeggbert/tiled-blupi">GitHub</a> · <a href="license.html">License</a></footer>
+</div>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

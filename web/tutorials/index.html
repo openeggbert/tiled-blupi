@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorials — tiled-blupi</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+  <a class="logo" href="../index.html">tiled-<span>blupi</span></a>
+  <form class="header-search" id="headerSearchForm" data-base="../"><input type="search" placeholder="Search docs…"></form>
+  <button class="theme-toggle" id="themeBtn">☾ Dark</button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">Getting Started</div>
+  <a href="../index.html">Home</a><a href="../overview.html">Overview</a><a href="../getting-started.html">Getting Started</a><a href="../installation.html">Installation</a>
+  <div class="sidebar-section">Games</div>
+  <a href="../games/index.html">Games Overview</a><a href="../games/speedy-blupi.html">Speedy Blupi</a><a href="../games/speedy-blupi-ii.html">Speedy Blupi II</a><a href="../games/differences.html">Differences</a>
+  <div class="sidebar-section">Format</div>
+  <a href="../level-files.html">Level Files</a><a href="../blp-format.html">BLP Format</a><a href="../supported-games.html">Supported Games</a>
+  <div class="sidebar-section">Layers &amp; Props</div>
+  <a href="../layers.html">Layers</a><a href="../map-properties.html">Map Props</a><a href="../object-properties.html">Object Props</a><a href="../object-types.html">Object Types</a>
+  <div class="sidebar-section">Tilesets</div>
+  <a href="../tilesets.html">Tilesets Overview</a><a href="../tilesets/index.html">Tileset Pages</a>
+  <div class="sidebar-section">Extension</div>
+  <a href="../extension/index.html">Extension Overview</a><a href="../extension/sblv-js-overview.html">sblv.js Overview</a><a href="../extension/read-flow.html">Read Flow</a><a href="../extension/write-flow.html">Write Flow</a><a href="../extension/binary-offsets.html">Binary Offsets</a><a href="../extension/object-conversion.html">Object Conversion</a><a href="../extension/layer-conversion.html">Layer Conversion</a><a href="../extension/limitations.html">Limitations</a>
+  <div class="sidebar-section">Tutorials</div>
+  <a href="../tutorials/index.html">All Tutorials</a><a href="../tutorials/install-into-game-folder.html">1. Install</a><a href="../tutorials/open-a-level.html">2. Open Level</a><a href="../tutorials/edit-map-properties.html">3. Map Props</a><a href="../tutorials/edit-foreground-tiles.html">4. Foreground Tiles</a><a href="../tutorials/edit-decoration-layer.html">5. Decoration</a><a href="../tutorials/edit-objects.html">6. Objects</a><a href="../tutorials/set-player-start.html">7. Player Start</a><a href="../tutorials/create-moving-object.html">8. Moving Object</a><a href="../tutorials/save-a-level.html">9. Save Level</a><a href="../tutorials/avoid-common-mistakes.html">10. Avoid Mistakes</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="../reference/index.html">Reference Index</a><a href="../reference/map-properties.html">Map Properties Ref</a><a href="../reference/object-properties.html">Object Properties Ref</a><a href="../reference/object-types.html">Object Types Ref</a><a href="../reference/layers.html">Layers Ref</a><a href="../reference/file-locations.html">File Locations</a><a href="../reference/tile-id-reference.html">Tile IDs</a><a href="../reference/game-differences.html">Game Differences</a>
+  <div class="sidebar-section">Formats</div>
+  <a href="../formats/index.html">Formats Index</a><a href="../formats/blp-level-format.html">BLP Level Format</a><a href="../formats/tiled-project-format.html">Tiled Project</a><a href="../formats/tsx-tilesets.html">TSX Tilesets</a><a href="../formats/png-assets.html">PNG Assets</a>
+  <div class="sidebar-section">Development</div>
+  <a href="../development/index.html">Dev Index</a><a href="../development/repository-map.html">Repository Map</a><a href="../development/understanding-sblv-js.html">Understanding sblv.js</a><a href="../development/adding-object-types.html">Adding Object Types</a><a href="../development/updating-tilesets.html">Updating Tilesets</a><a href="../development/debugging-tiled-extension.html">Debugging</a><a href="../development/contributing.html">Contributing</a><a href="../development/todo-fixme-hack.html">TODO/FIXME</a>
+  <div class="sidebar-section">Help</div>
+  <a href="../troubleshooting.html">Troubleshooting</a><a href="../faq.html">FAQ</a><a href="../known-limitations.html">Known Limitations</a><a href="../license.html">License</a>
+</nav>
+<main class="content">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › Tutorials</nav>
+<h1>Tutorials</h1>
+<p>Step-by-step guides for every common task in tiled-blupi. Each tutorial builds on the previous one. If you are new, start at Tutorial 1 and work through them in order. Experienced users can jump to any tutorial directly.</p>
+
+<div class="callout callout-info">
+<strong>Prerequisites:</strong> Before starting Tutorial 1, make sure you have Tiled map editor installed and at least one Speedy Blupi game installed on your computer. See the <a href="../installation.html">Installation</a> page if you have not set up tiled-blupi yet.
+</div>
+
+<h2>Tutorial Path</h2>
+<p>The tutorials below follow a logical sequence. Tutorials 1–3 cover setup; Tutorials 4–8 cover editing each type of content; Tutorial 9 covers saving; Tutorial 10 covers mistakes to avoid.</p>
+
+<div class="card-grid">
+<div class="card"><h3><a href="install-into-game-folder.html">1. Install Into Game Folder</a></h3><p>Copy the tiled-blupi project files into your Speedy Blupi game directory so Tiled can find all tilesets, extension scripts, and level files in one place.</p></div>
+<div class="card"><h3><a href="open-a-level.html">2. Open a Level</a></h3><p>Open Tiled, load the correct .tiled-project file, and open one of the 25 or 30 built-in level files. Understand what you see on screen.</p></div>
+<div class="card"><h3><a href="edit-map-properties.html">3. Edit Map Properties</a></h3><p>Change the level's background, ambient sound track, and other per-level settings using the Map Properties panel.</p></div>
+<div class="card"><h3><a href="edit-foreground-tiles.html">4. Edit Foreground Tiles</a></h3><p>Paint, erase, and replace tiles on the main terrain layer using Tiled's stamp brush, terrain brush, and eraser tools.</p></div>
+<div class="card"><h3><a href="edit-decoration-layer.html">5. Edit the Decoration Layer</a></h3><p>Add visual decorations — trees, flowers, signs — to the decoration layer without changing the terrain.</p></div>
+<div class="card"><h3><a href="edit-objects.html">6. Edit Objects</a></h3><p>Add, move, and configure game objects such as enemies, collectables, and hazards on the Objects layer.</p></div>
+<div class="card"><h3><a href="set-player-start.html">7. Set Player Start Position</a></h3><p>Place or move the player start object, understand the difference between the four player-start tile variants, and verify the position will work in-game.</p></div>
+<div class="card"><h3><a href="create-moving-object.html">8. Create a Moving Object</a></h3><p>Configure an object to move between two points using the endpoint, timing, and wait-time object properties.</p></div>
+<div class="card"><h3><a href="save-a-level.html">9. Save a Level</a></h3><p>Save your edits back to the .blp file and verify the file size is exactly 50,468 bytes to confirm the write succeeded.</p></div>
+<div class="card"><h3><a href="avoid-common-mistakes.html">10. Avoid Common Mistakes</a></h3><p>A reference list of the most common errors — wrong project file, wrong layer, tile count exceeded — and how to avoid each one.</p></div>
+</div>
+
+<h2>What You Will Need</h2>
+<table>
+<thead><tr><th>Item</th><th>Where to Get</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Tiled map editor</td><td>mapeditor.org</td><td>Any recent version; scripted map formats require Tiled ≥ 1.4</td></tr>
+<tr><td>Speedy Blupi 1 (SB1) game</td><td>Purchased copy</td><td>Required for Tutorial 1 if editing SB1 levels</td></tr>
+<tr><td>Speedy Blupi 2 (SB2) game</td><td>Purchased copy</td><td>Required if editing SB2 levels; can be installed alongside SB1</td></tr>
+<tr><td>tiled-blupi repository</td><td>GitHub (openeggbert/tiled-blupi)</td><td>Clone or download as ZIP</td></tr>
+</tbody>
+</table>
+
+<h2>Time Estimates</h2>
+<table>
+<thead><tr><th>Tutorial</th><th>Estimated Time</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>1. Install</td><td>5–10 minutes</td><td>Easy</td></tr>
+<tr><td>2. Open Level</td><td>3–5 minutes</td><td>Easy</td></tr>
+<tr><td>3. Map Properties</td><td>5 minutes</td><td>Easy</td></tr>
+<tr><td>4. Foreground Tiles</td><td>15–30 minutes</td><td>Medium</td></tr>
+<tr><td>5. Decoration Layer</td><td>10 minutes</td><td>Easy</td></tr>
+<tr><td>6. Objects</td><td>15 minutes</td><td>Medium</td></tr>
+<tr><td>7. Player Start</td><td>5 minutes</td><td>Easy</td></tr>
+<tr><td>8. Moving Object</td><td>15–20 minutes</td><td>Medium</td></tr>
+<tr><td>9. Save</td><td>2 minutes</td><td>Easy</td></tr>
+<tr><td>10. Avoid Mistakes</td><td>10 minutes (read-through)</td><td>Easy</td></tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/script.js"></script>
+</body></html>
